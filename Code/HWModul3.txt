@@ -1,0 +1,1316 @@
+1.import java.util.*;
+
+public class MoonComputerTests {
+    public void testBasicInputOutput() {
+        Scanner scanner = new Scanner(System.in);
+           System.out.print("");
+              String other = scanner.nextLine();
+           System.out.println (other);
+        scanner.close();       
+    }
+}
+
+1.1 public class MoonComputerTests {
+    public void testBasicInputOutput() {
+        Scanner scanner = new Scanner(System.in);
+        String line = scanner.nextLine();
+        System.out.println(line);
+        scanner.close();
+    }
+
+    //Test output on 24, 4 standard input
+    public static void main(String[] args) {
+        new MoonComputerTests().testMath();
+    }
+}
+
+2.1
+import java.util.*;
+
+public class MoonComputerTests {
+    public void testMath() {
+        Scanner scanner = new Scanner(System.in);
+      //System.out.print();
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
+      int sum = num1 + num2;
+      int minus = num1 - num2;
+      int by = num1 * num2;
+      int div = num1 / num2;
+        System.out.println(sum + " " + minus + " " + by + " " + div);
+        scanner.close();
+    }
+
+    //Test output on 24, 4 standard input
+    public static void main(String[] args) {
+    new MoonComputerTests().testMath();
+    }
+}2.2  public void testMath() {
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+
+        int sum = a + b;
+        int sub = a - b;
+        int multiply = a * b;
+        int divide = a / b;
+
+        System.out.println(sum + " " + sub + " " + multiply + " " + divide);
+
+        scanner.close();
+    }
+3.1 import java.util.*;
+
+public class MoonComputerTests {
+    public void testLogicalOperators() {
+        Scanner scanner = new Scanner(System.in);
+        boolean val1 = scanner.nextBoolean();
+        boolean val2 = scanner.nextBoolean();
+        boolean val3 = scanner.nextBoolean();
+      
+        boolean eee = val1 && val2 && val3;
+        boolean eeli = val1 || val2 || val3;
+        System.out.println(eee + " " + eeli);
+        scanner.close();
+    }
+
+    //Test output on true, true, false standard input
+    public static void main(String[] args) {
+        new MoonComputerTests().testLogicalOperators();
+    }
+}
+
+4. import java.util.*;
+
+public class PassportFormCreator {
+    public void createForms() {
+        Scanner scanner = new Scanner(System.in);
+      System.out.println("");
+        String fName = scanner.nextLine();
+      System.out.println("");
+        String lName = scanner.nextLine();
+      System.out.println("");
+        int age = scanner.nextInt();
+        int moonAge = age * 10;
+      System.out.println(fName + " " + lName + " " + moonAge);
+      System.out.println(fName.toUpperCase());
+      System.out.println(lName.toUpperCase());
+      System.out.println(moonAge);
+      scanner.close();
+    }
+}
+
+5. import java.util.*;
+
+public class HarekCity {
+    public String[] createEmptyNameArray() {
+        String[] result;
+          result = new String [0];
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String[] arr = new HarekCity().createEmptyNameArray();
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+6. import java.util.*;
+public class HarekCity {
+
+public int[] createAgeArray(int age1, int age2, int age3, int age4){
+return new int[] {age1, age2, age3, age4};
+}
+    public static void main(String[] args) {
+        int[] ageArray = new HarekCity().createAgeArray(10, 20, 30, 40);
+        System.out.println(Arrays.toString(ageArray));
+    }
+}
+
+7. import java.util.*;
+
+public class HarekCity {
+    public void fixNames(String[] names, String[] toReplace){
+           names[1] = toReplace[0];
+           names[3] = toReplace[1];
+    }
+    public static void main(String[] args) {
+        String[] names = new String[]{"mixa", "ukio", "barek", "krou", "fiha"};
+        String[] toReplace = new String[]{"lopr", "boki"};
+        new HarekCity().fixNames(names, toReplace);
+        System.out.println(Arrays.toString(names));
+    }
+}
+
+8. public class HarekCity {
+    
+    public String firstAndLastTogether(String[] names) {
+       return names[0] + " " + "AND" + " " + names[9] + " " + "TOGETHER";
+    }
+    public static void main(String[] args) {
+        String[] names = new String[]{"io", "pu", "re", "max", "kok", "mis", "hit", "kio", "pax", "rew"};
+        System.out.println(new HarekCity().firstAndLastTogether(names));
+    }
+}
+
+9. import java.util.*;
+public class HarekCity {
+    public void changeElectResult(String[] results) {
+        String fakeResults[] = results.clone() ;
+        results[0] = fakeResults[fakeResults.length - 1];
+        results[results.length - 1] = fakeResults[0];
+    }
+    public static void main(String[] args) {
+        String[] results = new String[]{"miho", "hut"};
+        new HarekCity().changeElectResult(results);
+        System.out.println(Arrays.toString(results));
+    }
+}
+
+10. import java.util.*;
+
+public class HarekCity {
+    public String[] changeElectResultAgain(String[] results){
+      String[] changedResults = new String[3];
+      changedResults[0] = results[2];
+      changedResults[1] = results[3];
+      changedResults[2] = results[4];
+      return changedResults;
+    }
+    public static void main(String[] args) {
+        String[] results = new String[]{"mix", "max", "pex", "fux", "rox"};
+        String[] changedResults = new HarekCity().changeElectResultAgain(results);
+        System.out.println(Arrays.toString(changedResults));
+    }
+}
+
+10.1.  public String[] changeElectResultAgain(String[] results) {
+        return new String[] {
+                results[2],
+                results[3],
+                results[4]
+        };
+    }
+
+11. import java.util.*;
+
+public class HarekCity {
+  public char[][] createKeyboard(){
+    char[][] keyboard = {
+                      {'1', '2', '3'},
+                      {'4', '5', '6'},
+                      {'7', '8', '9'},
+                      {'*', '0', '#'},
+                        };
+  return keyboard;
+                        }
+    public static void main(String[] args) {
+        char[][] keyboard = new HarekCity().createKeyboard();
+        for (int i = 0; i < keyboard.length; i++) {
+            System.out.println(Arrays.toString(keyboard[i]));
+        }
+    }
+}
+
+11.1.     public char[][] createKeyboard() {
+        return new char[][]  {
+                {'1', '2', '3'},
+                {'4', '5', '6'},
+                {'7', '8', '9'},
+                {'*', '0', '#'}
+        };
+    }
+
+12. 
+import java.util.*;
+
+public class HarekCity {
+    public char[][] createKeyboard() {
+        return new char[][]  {
+                {'1', '2', '3'},
+                {'4', '5', '6'},
+                {'7', '8', '9'},
+                {'*', '0', '#'}
+        };
+    }
+  public void printKeyboard() {
+    char[][] secondKeyboard = createKeyboard();
+     System.out.println(Arrays.toString(createKeyboard()[0]));
+     System.out.println(Arrays.toString(createKeyboard()[1]));
+     System.out.println(Arrays.toString(createKeyboard()[2]));
+     System.out.println(Arrays.toString(createKeyboard()[3]));
+  }
+    public static void main(String[] args) {
+        new HarekCity().printKeyboard();
+    }
+}
+
+12.1       public char[][] createKeyboard() {
+        return new char[][]  {
+                {'1', '2', '3'},
+                {'4', '5', '6'},
+                {'7', '8', '9'},
+                {'*', '0', '#'}
+        };
+    }
+
+    public void printKeyboard() {
+        char[][] keyboard = createKeyboard(); //!!!method in method!!!!!
+
+        System.out.println(Arrays.toString(keyboard[0]));
+        System.out.println(Arrays.toString(keyboard[1]));
+        System.out.println(Arrays.toString(keyboard[2]));
+        System.out.println(Arrays.toString(keyboard[3]));
+    }
+
+13. import java.util.Arrays;
+
+import java.util.Arrays;
+
+public class HarekCity {
+
+  public String[] makeCopy(String[] names) {
+    String[] copy = Arrays.copyOf(names, names.length);
+    System.out.println("Copied!");
+    return copy;
+  }
+    public static void main(String[] args) {
+        String[] source = new String[] {"Hero", "Mihu"};
+        String[] copy = new HarekCity().makeCopy(source);
+        source[0] = "CHANGED!"; //Мы меняем исходный массив, но на 
+        System.out.println(Arrays.toString(copy));
+    } 
+}
+
+14. import java.util.Arrays;
+
+public class HarekDataMaker {
+  public String aggregateSingle(String name, String age, String planet) {
+  return ("name - " + name + ", " + "age - " + age + ", " + "planet - " + planet);
+  }
+  public String [] aggregateAll(String[] names, int [] ages, String[] planets) {
+    String [] newArr = new String[3];
+    newArr[0] = aggregateSingle(names[0], Integer.toString(ages[0]), planets[0]);
+    newArr[1] = aggregateSingle(names[1], Integer.toString(ages[1]), planets[1]);
+    newArr[2] = aggregateSingle(names[2], Integer.toString(ages[2]), planets[2]);
+    return newArr;
+  }
+    public static void main(String[] args) {
+        String[] names = new String[] {"hter", "pou", "diz"};
+        int[] ages = new int[] {30, 35, 70};
+        String[] planets = new String[] {"Mars", "Earth", "Jupiter"};
+
+        HarekDataMaker harekDataMaker = new HarekDataMaker();
+
+        System.out.println(harekDataMaker.aggregateSingle(names[0], Integer.toString(ages[0]), planets[0]));
+        System.out.println("###");                  
+        System.out.println(Arrays.toString(harekDataMaker.aggregateAll(names, ages, planets)));
+    }
+}
+
+15. public class SaveStarShip {
+  public int calculateDistance(int distance){
+     distance = Math.abs(distance);
+    return distance;
+  }
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+        System.out.println(ship.calculateDistance(-10));
+    }
+}
+
+15.1 public class SaveStarShip {
+    public int calculateDistance(int distance) {
+        if (distance < 0) {
+            return distance * -1;
+        }
+
+        return distance;
+    }
+
+16. import java.util.*;
+ public class SaveStarShip{
+ public String[] getPlanets(String galaxy){
+  String[] planetMiaru = {"Maux", "Reux", "Piax"};
+  String[] planetMilkyway = {"Earth", "Mars", "Jupiter"};
+  String[] planetDangerBanger = {"Fobius", "Demius"};
+  String[] planetNull = {""};
+               if (galaxy.equals("Miaru")) {
+            return planetMiaru;
+        } else if (galaxy.equals("Milkyway")){
+            return planetMilkyway;
+        } else if (galaxy.equals("DangerBanger")){
+            return planetDangerBanger;
+        } else {
+            return planetNull;
+    }
+}
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip(); System.out.println(Arrays.toString(ship.getPlanets("DangerBanger")));
+    }
+}
+
+17. import java.util.*;
+
+public class SaveStarShip {
+  public String choosePlanet(long distanceToEarth){
+    if (distanceToEarth < 45667){
+      return ("Earth");
+    } else {
+      return ("Pern");
+    }
+  }
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+        System.out.println(ship.choosePlanet(10));
+    }
+}
+
+18. import java.util.*;
+
+public class SaveStarShip {
+  public int calculateFuelPrice(String fuel, int count){
+     if (fuel.equals("STAR100")) {
+            return count * 70;
+        } else if (fuel.equals("STAR500")) {
+            return count * 120;
+        } else if (fuel.equals("STAR1000")) {
+            return count * 200;
+        } else {
+            return count * 50;
+        }
+  }  
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+
+        System.out.println(ship.calculateFuelPrice("STAR100", 10));
+    }
+}
+
+19. import java.util.*;
+
+public class SaveStarShip {
+   public int roundSpeed(int speed){
+     speed = speed/10;
+     speed = Math.round(speed);
+     speed = speed*10;
+     return speed;   
+   }
+
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+
+    }
+}
+19.1.      public int roundSpeed(int speed) {
+        int firstDigit = speed / 10;
+        int lastDigit = speed % 10;
+
+        if (lastDigit >= 5) {
+            firstDigit++;
+        }
+
+        return firstDigit * 10;
+    }
+20. import java.util.*;
+
+public class SaveStarShip {
+  public int calculateNeededFuel(int distance){
+    int result = distance;
+     if (result < 21){
+       return 1000;
+     } else {
+       return ((result - 20) * 5) + 1000;
+     }
+  }
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+        System.out.println(ship.calculateNeededFuel(21));
+    }
+}
+
+21. import java.util.*;
+
+public class SaveStarShip {
+  public void calculateMaxPower(){
+     Scanner scanner = new Scanner(System.in);
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
+        int num3 = scanner.nextInt();
+    if (num3 < num1 && num1 > num2){
+   System.out.println(num1 * 2.1f);
+    } else if (num1 < num2 && num2 > num3){
+   System.out.println(num2 * 2.1f);
+    } else if (num1 < num3 && num3 > num2){
+   System.out.println(num3 * 2.1f);
+    }    
+   scanner.close();
+  }
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+
+        ship.calculateMaxPower();
+    }
+}
+
+21.1  public void calculateMaxPower() {
+        Scanner scanner = new Scanner(System.in);
+        int speed1 = scanner.nextInt();
+        int speed2 = scanner.nextInt();
+        int speed3 = scanner.nextInt();
+
+        int max = speed1;
+        if (speed2 > max) {
+            max = speed2;
+        }
+        if (speed3 > max) {
+            max = speed3;
+        }
+
+        float coeff = 0.7f;
+        if (max < 10) {
+            coeff = 0.7f;
+        } else if (max > 10 && max < 100) {
+            coeff = 1.2f;
+        } else {
+            coeff = 2.1f;
+        }
+
+        float maxPower = (float) max * coeff;
+        System.out.println(maxPower);
+        scanner.close();
+    }
+22. import java.util.*;
+
+public class SaveStarShip {
+  public String getMyPrizes(int ticket){
+             if (ticket > 200 && ticket%10 <= 0) {
+              System.out.println("crystall coin");
+            } else if (ticket > 200 && ticket%10 >= 7) {
+              System.out.println("chip coin");
+    } else if (ticket > 200 && ticket%10 <= 0 && ticket%10 >=7) {
+              System.out.println("coin");   
+            } else if (ticket <= 200 & ticket%10 <= 0) {
+                System.out.println("crystall");
+              } else if (ticket < 200 & ticket%10 >= 7) {
+                System.out.println("chip");
+      } else if (ticket < 200 | ticket%10 >= 7 | ticket%10 <= 0)
+            {System.out.println("");
+            } else {
+              return "coin";
+            } return "";
+  }
+  public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+        System.out.println(ship.getMyPrizes(250));
+    }
+}
+
+22.1  public String getMyPrizes(int ticket) {
+        String result = "";
+        if (ticket % 10 == 0) {
+            result += "crystall";
+        }
+
+        if (ticket % 10 == 7) {
+            result += " chip";
+        }
+
+        if (ticket > 200) {
+            result += " coin";
+        }
+
+        return result.strip();
+    }
+
+23. import java.util.*;
+
+public class SaveStarShip {
+  public boolean isHangarOk(float side1, float side2, int price){
+  float square = side1*side2;
+    float relateSides1 = side1 / side2;
+    float relateSides2 = side2 / side1;
+       if ( 0.5 <= relateSides1 && relateSides1 <= 2 && square >= 1500 && price/square <= 1000){
+            return true;
+        } else {
+            return false;
+        }
+    }
+//square >= 1500  &&&& price/square <= 1000
+    public static void main(String[] args) {
+        SaveStarShip ship = new SaveStarShip();
+        System.out.println(ship.isHangarOk(100, 75, 1000000));
+    }
+}
+
+24. import java.util.*;
+
+public class QuadraticEquationSolver {
+    public double[] solve(double a, double b, double c) {
+        double[] empty = {};
+        double[] oneRoot = new double[1];
+        double discriminant = b * b - 4 * a * c;
+        double[] twoRoots = new double[2];
+        if (discriminant > 0) {
+            double discriminantBiggerZero1 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            twoRoots[0] = discriminantBiggerZero1;
+            double discriminantBiggerZero2 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            twoRoots[1] = discriminantBiggerZero2;
+            return twoRoots;
+        } else if (discriminant == 0) {
+            double discriminantZero = -b / (2 * a);
+            oneRoot[0] = discriminantZero ;
+            return oneRoot;
+        } else {
+            return empty;
+        }
+    }
+        public static void main (String[]args){
+            QuadraticEquationSolver ship = new QuadraticEquationSolver();
+            System.out.println(ship.solve(6, -96, 384));
+        }
+    }
+25. public class CaptainDispute {
+    public String evenOrOdd(int number) {
+        return number % 2 == 0 ? "even" : "odd";
+    }
+    public static void main(String[] args) {
+        CaptainDispute captainDispute = new CaptainDispute();
+
+        //Should be even
+        System.out.println(captainDispute.evenOrOdd(10));
+
+        //Should be odd
+        System.out.println(captainDispute.evenOrOdd(5));
+    }
+}
+
+26. import java.util.Arrays;
+
+public class CaptainDisputeAgain {
+    public int findMin(int[] triple){
+       int[] tripleCopy = triple;
+        Arrays.sort(tripleCopy);
+        //System.out.println("tripleCopy[0] = " + tripleCopy[0]);
+        return tripleCopy[0];
+    }
+    public static void main(String[] args) {
+        //System.out.println(tripleCopy[0]);
+        }
+    }
+
+27. import java.util.Locale;
+
+public class NumberTranslator {
+    public int translate(String romanNumber){
+        String digit = romanNumber.toLowerCase().trim();
+       int digitName = 0;
+        switch(digit) {
+            case "i":
+                digitName = 1;
+                break;
+            case "ii":
+                digitName = 2;
+                break;
+            case "iii":
+                digitName = 3;
+                break;
+            case "iv":
+                digitName = 4;
+                break;
+            case "v":
+                digitName = 5;
+                break;
+            case "vi":
+                digitName = 6;
+                break;
+            case "vii":
+                digitName = 7;
+                break;
+            case "viii":
+                digitName = 8;
+                break;
+            case "ix":
+                digitName = 9;
+                break;
+            case "x":
+                digitName = 10;
+                break;
+            case "xi":
+                digitName = 11;
+                break;
+            case "xii":
+                digitName = 12;
+                break;
+        }
+        return digitName;
+    }
+    public static void main (String[]args){
+        NumberTranslator num = new NumberTranslator();
+        System.out.println(num.translate("xi"));
+    }
+}
+
+
+28. public class UberShop {
+    public void printPrices(float[] prices) {
+for (float i: prices){
+    System.out.println(i + " jup.");
+}
+    }
+    public static void main(String[] args) {
+        UberShop shop = new UberShop();
+        float[] prices = new float[] {100f, 23.5f, 400f};
+        shop.printPrices(prices);
+    }
+}
+
+29. import java.util.Arrays;
+
+public class UberShop {
+    public void multiplyPrices(float[] prices) {
+        for (int i = 0; i < prices.length; i++) {
+            float result = prices[i];
+            if (result < 1000) {
+                float varie1 = result * 2f;
+                prices[i] = varie1;
+            } else if (result >= 1000) {
+                float varie2 = result * 1.5f;
+                prices[i] = varie2;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        UberShop shop = new UberShop();
+        float[] prices = new float[] {100f, 1500f};
+        shop.multiplyPrices(prices);
+    }
+}
+
+29.1  public void multiplyPrices(float[] prices) {
+        for(int i = 0; i < prices.length; i++) {
+            float price = prices[i];
+
+            if (price < 1000) {
+                price *= 2f;
+            } else {
+                price *= 1.5f;
+            }
+
+            prices[i] = price;
+        }
+    }
+
+30.  import java.util.Arrays;
+
+public class UberShop {
+    public int[] findMinMaxPrices(int[] prices) {
+        int res1 = 0;
+        for (int i = 0; i < prices.length; i++) {
+            Arrays.sort(prices);
+            //int[] result0 = new int[] {};
+            res1 = prices[prices.length - 1];
+            if (prices[0] < prices[1]){
+                return new int[]{prices[0], res1};
+            } else if (prices[0] == prices[1]){
+                return new int[]{prices[0]};
+            } else if (prices.length != 0){
+                return new int[] {};
+            }
+        }
+        return new int[]{};
+    }
+    public static void main(String[] args) {
+        UberShop shop = new UberShop();
+        int[] prices = new int[] {43, 43, 43};
+        int[] minMax = shop.findMinMaxPrices(prices);
+        System.out.println(Arrays.toString(minMax));
+    }
+
+}
+
+30.1      public int[] findMinMaxPrices(int[] prices) {
+        if (prices.length == 0) {
+            return new int[0];
+        }
+
+        int min = prices[0];
+        int max = prices[0];
+
+        for(int price: prices) {
+            if (price > max) {
+                max = price;
+            }
+
+            if (price < min) {
+                min = price;
+            }
+        }
+
+        if (min == max) {
+            return new int[] {min};
+        }
+
+        return new int[] {min, max};
+    }
+
+31 import java.util.Arrays;
+
+public class UberShop {
+    public int getMinPriceCount(int[] prices) {
+        if (prices.length == 0) {
+           return 0;
+        }
+        Arrays.sort(prices);
+        int min = prices[0];
+        int k = 0;
+        for (int price : prices) {
+            if (price == min) {
+                k++;
+            }
+        }
+        return k;
+    }
+    public static void main(String[] args) {
+        UberShop shop = new UberShop();
+        int[] prices = new int[] {100, 1500, 300, 50, 10, 10, 70};
+        System.out.println(shop.getMinPriceCount(prices)); 
+    }
+}
+
+31.1  public int getMinPriceCount(int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+
+        int min = prices[0];
+        for(int i = 0; i < prices.length; i++) {
+            if (prices[i] < min) {
+                min = prices[i];
+            }
+        }
+
+        int result = 0;
+        for(int i = 0; i < prices.length; i++) {
+            if (prices[i] == min) {
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+32.  package HW3;
+import java.util.Arrays;
+
+public class UberShop32 {
+    public int[] removePrice(int[] prices, int toRemove){
+        int index = 0;
+        for (int i = 0; i < prices.length; i++)
+            if (prices[i] != toRemove)
+                prices[index++] = prices[i];
+                return Arrays.copyOf(prices, index);
+            }
+
+            //Test output
+            public static void main(String[] args) {
+                UberShop32 shop = new UberShop32();
+
+                //Should be [150, 200]
+                int[] prices = new int[]{100, 100, 100};
+                int toRemove = 100;
+                System.out.println(Arrays.toString(shop.removePrice(prices, toRemove)));
+            }
+        }
+
+
+32.1  public int[] removePrice(int[] prices, int toRemove) {
+        int toRemoveCount = 0;
+        for(int price: prices) {
+            if (price == toRemove) {
+                toRemoveCount++;
+            }
+        }
+
+        int[] result = new int[prices.length - toRemoveCount];
+        int index = 0;
+        for(int price: prices) {
+            if (price != toRemove) {
+                result[index] = price;
+                index++;
+            }
+        }
+
+        return result;
+    }
+
+33  package HW3;
+
+import java.util.Arrays;
+
+public class UberShop33 {
+    public int[] leavePrice9(int[] prices){
+        int index = 0;
+        for (int i = 0; i < prices.length; i++)
+            if (prices[i]%10 == 9)
+                prices[index++] = prices[i];
+        return Arrays.copyOf(prices, index);
+    }
+    public static void main(String[] args) {
+        UberShop33 shop = new UberShop33();
+
+        //Should be [1599, 399]
+        int[] prices = new int[]{399, 1599, 399, 50, 10, 10, 70};
+        System.out.println(Arrays.toString(shop.leavePrice9(prices)));
+    }
+}
+
+34. import java.util.*;
+
+import java.util.Arrays;
+
+public class UberShop {
+    public String[] mergeStocks(String[] showcaseStocks, String[] warehouseStocks) {
+        String[] together = new String[showcaseStocks.length + warehouseStocks.length];
+        int count = 0;
+        int i;
+        int j;
+        for (i = 0; i < showcaseStocks.length; i++) {
+            together[i] = showcaseStocks[i];
+            count++;
+        }
+        for (j = 0; j < warehouseStocks.length; j++) {
+            together[count++] = warehouseStocks[j];
+        }
+        for (i = 0; i < together.length; i++) {
+            System.out.println(" ");
+        }
+        return together;
+    }
+    //Test output
+    public static void main(String[] args) {
+        UberShop shop = new UberShop();
+
+        //Final result should be ["gun", "firebow", "firegun"]
+        String[] showcaseStocks = new String[] {"gun", "firebow"};
+        String[] warehouseStocks = new String[] {"firegun"};
+        System.out.println(Arrays.toString(shop.mergeStocks(showcaseStocks, warehouseStocks)));
+    }
+}
+35. import java.util.*;
+
+public class UberShop {
+    public int getPricesSum(int[] prices, int minPrice, int maxPrice) {
+        int sum = 0;
+        int i;
+        for (i = 0; i < prices.length; i++) {
+            if (prices[i] >= minPrice && prices[i] <= maxPrice) {
+                sum += prices[i];
+            }
+        }
+        return (sum);
+    }
+    public static void main(String[] args) {
+        UberShop shop = new UberShop();
+
+        //Should be 144 - 20 + 50 + 40 + 34
+        int[] prices = new int[] {10, 20, 50, 40, 34, 500};
+        System.out.println(shop.getPricesSum(prices, 20, 50));
+    }
+}
+
+36. variant
+//int numberCount = stocks.length;
+        String emptyRes = "Empty";
+        String[] array = new String[numberCount * 2];
+        for (int i = 0; i < stocks.length; i++){
+            String[] text = new String[0];
+            String[] digits = new String[0];
+            String[] parts = stocks[i].split(" ");
+            text[i] = parts[0];
+            digits[i] = parts[1];
+            digits[i] = String.valueOf(Integer.parseInt(parts[1]));
+        }
+        for (int j = 1; j < stocks.length; j++){
+            if (Integer.parseInt(stocks[j]) < 200){
+                emptyRes = stocks [j - 1];
+                System.out.println(emptyRes);
+            }
+        }
+        return emptyRes;
+    }
+    public static void main(String[] args) {
+        CheapStocks36 shop = new CheapStocks36();
+        getCheapStocks(new String[] {"gun 500", "firebox 70", "pixboom 200"});
+        //String[] emptyRes;
+        //System.out.println(Arrays.toString(shop.getCheapStocks(emptyRes)));
+    }
+}
+ 36. variant
+public class CheapStocks {
+   public String getCheapStocks(String[] stocks){
+       String result = "";
+      for (int i=0; i < stocks.length; i++ ) {
+            String text = stocks[i];
+            String[] parts = text.split(" ");
+            int price = Integer.parseInt(parts[1]);
+            if (price < 200){
+                result += parts[0] + " ";
+            }
+      }
+    return result;
+   }
+}
+
+36 clear
+import java.util.Arrays;
+
+public class CheapStocks {
+    public String getCheapStocks(String[] stocks){
+        int numberCount = stocks.length;
+        String result = "";
+        for (int i = 0; i < stocks.length; i++){
+            String text = stocks[i];
+            String[] parts = text.split(" ");
+            String number1 = parts[0];
+            int number2 = Integer.parseInt(parts[1]);
+               if (number2 < 200){
+                  result += parts[0] + " ";
+            }
+        }
+        return result;
+    }
+}
+
+37. public class ArlanHelper {
+     public String drawQuad(int n){
+            int a = 0;
+            while(a++ < n){
+                int b = 0;
+                while(b++ < n) {
+                    System.out.print("*");
+                }
+                System.out.println();
+            }
+            return "";
+        }
+        public static void main(String[] args) {
+            ArlanHelper helper = new ArlanHelper();
+
+            System.out.println(helper.drawQuad(10));
+        }
+    }
+
+37.2      public String drawQuad(int n) {
+        String result = "";
+
+        int lines = n;
+
+        while(lines > 0) {
+            lines--;
+
+            int columns = n;
+            while(columns > 0) {
+                result += "*";
+                columns--;
+            }
+
+            result += "\n";
+        }
+
+        return result;
+    }
+
+38  
+public class ArlanHelper {
+    public String drawRect(int width, int height, char c) {
+        int a = height;
+        while(a  > 0){
+            a--;
+            int b = width;
+            while(b > 0) {
+                b--;
+                System.out.print(c);
+            }
+            System.out.println();
+        }
+        return "";
+    }
+    public static void main(String[] args) {
+        ArlanHelper helper = new ArlanHelper();
+        System.out.println(helper.drawRect(2, 9, 'X'));
+    }
+}
+
+38.1 
+ public String drawRect(int width, int height, char c) {
+        String result = "";
+
+        int lines = height;
+
+        while(lines > 0) {
+            lines--;
+
+            int columns = width;
+            while(columns > 0) {
+                result += c;
+                columns--;
+            }
+
+            result += "\n";
+        }
+
+        return result;
+    }
+___________________________________________
+39 Напиши метод public String drawLine(int length). 
+Он рисует линию длиной length символами '*' и '#' поочередно, 
+начиная c символа '*' и возвращает эту линию.
+Примеры тестов
+
+Выполнение кода:
+
+ArlanHelper helper = new ArlanHelper();
+System.out.println(helper.drawLine(5));
+
+выведет в консоль:
+
+*#*#*
+
+    использовать можно только цикл while
+_____________________________________________
+
+public class ArlanHelper {
+    public String drawLine(int length) {
+
+        int a = 0;
+        while(a++ < length/2){
+            System.out.print("*#");
+        }
+        return "*";
+    }
+    public static void main(String[] args) {
+        ArlanHelper helper = new ArlanHelper();
+        //Should be:
+        //*#*#*
+        System.out.println(helper.drawLine(6));
+    }
+}
+__________________________________________________
+Author solution   
+ String result = "";
+
+        boolean star = true;
+
+        while (length > 0) {
+            result += star ? '*' : '#';
+            star = !star;
+            length--;
+        }
+
+        return result;
+    }
+__________________________________________________
+40. Задание
+
+Напиши метод public String drawPattern(char[] pattern, int repeatCount), 
+который принимает образец для отрисовки - pattern, и количество раз, 
+которое нужно подряд нарисовать этот образец repeatCount. Метод возвращает 
+строку с нарисованным указанное количество раз образцом.
+
+____________________________________________________
+
+import java.util.Arrays;
+
+public class ArlanHelper {
+    public String drawPattern(char[] pattern, int repeatCount){
+        String patternLine =  String.valueOf(pattern);
+           int a = 0;
+           while (a++ < repeatCount){
+              System.out.print(patternLine);
+           }
+        return "";
+    } 
+   public static void main(String[] args) {
+        ArlanHelper helper = new ArlanHelper();
+        //Should be:
+        //JavaJavaJavaJava
+        System.out.println(helper.drawPattern(new char[] {'J', 'a', 'v', 'a'}, 3));
+    }
+}
+
+___________________________________________________
+
+41.   Напиши класс TriangleDrawer. Создай в нем метод 
+public String drawTriangle(int side).
+ Он принимает размер стороны треугольника, рисует этот reversed 
+треугольник в строку, и 
+возвращает эту строку.
+
+Обрати внимание на аккуратный вывод, лишние пробелы после 
+символов '*' не допускаются.
+_____________________________________________________________
+
+
+public class TriangleDrawer {
+    public String drawTriangle(int side){
+            int a = 0;
+            while(a < side) {
+                int b = side;
+                while((b - a) > 0) {
+                    System.out.print("*");
+                    b--;
+                }
+                System.out.println();
+                a++;
+            }
+            return "";
+        }
+        public static void main(String[] args) {
+            TriangleDrawer helper = new TriangleDrawer();
+            System.out.println(helper.drawTriangle(9));
+        }
+    }
+________________________________________________________________
+
+42. Задание
+
+Напиши метод public int sumQuads(int n), 
+который считает и возвращает сумму квадратов чисел от 1 до n включительно.
+_______________________________________________________________________
+
+
+public class TrurlBank42 {
+    public int sumQuads(int n) {
+        int i = 1;
+        int squareValue;
+        int sum=0;
+        while (i <= n){
+            squareValue = (i * i);
+            sum += squareValue;
+            i++;
+        }
+        return sum;
+    }
+    public static void main(String[] args) {
+        TrurlBank42 bank = new TrurlBank42();
+        System.out.println(bank.sumQuads(3));
+    }
+}
+____________________________________________________
+author version
+
+public int sumQuads(int n) {
+        int result = 0;
+
+        while(n > 0) {
+            result += n * n;
+            n--;
+        }
+
+        return result;
+    }
+
+______________________________________________________
+
+43. Напиши метод public int countSumOfDigits(int number). 
+Он принимает число, и возвращает сумму цифр этого числа.
+_______________________________________________________
+
+public class TrurlBank43 {
+    public int countSumOfDigits(int number){
+        int sum = 0;
+        while(number != 0){
+            sum += (number % 10);
+            number/=10;
+    }
+        return sum;
+    }
+    public static void main(String[] args) {
+        TrurlBank43 bank = new TrurlBank43();
+        System.out.println(bank.countSumOfDigits(547));
+    }
+}
+__________________________________________________________
+
+44.
+Банк устанавливает по всему городу банкоматы, которые выдают деньги 
+бумажными купюрами. В банкомате всегда в достаточном количестве есть 
+купюры достоинством в 500, 200, 100, 50, 20, 10, 5, 2 и 1 долларов Нептуна.
+
+Напиши программу, на вход которой дается сумма, которую должен выдать
+ банкомат. Программа должна возвратить минимальное количество купюр, 
+какими можно выдать эту сумму.
+
+Важно. Сохрани текст этой программы, он пригодится тебе в следующей задаче.
+Задача
+
+Напиши класс ATM. В этом классе создай метод public int countBanknotes(int sum). 
+Он принимает один параметр sum - количество денег, которое нужно выдать, и 
+возвращает минимальное количество банкнот, которыми можно выдать эту сумму.
+__________________________________________________________
+public class ATM44 {
+    public int countBanknotes(int sum){
+            int count = 0;
+            int i = 10000;
+            int j = 100;
+            while (sum != 0){
+                while (sum != 0){
+                    if (sum % i >= j * 5) {
+                        sum -= j*5;
+                        count++;
+                        //System.out.println(sum);
+                    }else
+                    if (sum % i >= j*2){
+                        sum -= j*2;
+                        count++;
+                        //System.out.println(sum);
+                    } else
+                    if (sum % i >= j*1){
+                        sum -= j*1;
+                        count++;
+                        //System.out.println(sum);
+                    } else
+                    if (sum % i >= j/2){
+                        sum -= j/2;
+                        count++;
+                        //System.out.println(sum);
+                    } else
+                    if (sum % i >= j/5){
+                        sum -= j/5;
+                        count++;
+                        //System.out.println(sum);
+                    } else
+                    if (sum % i >= j/10){
+                        sum -= j/10;
+                        count++;
+                        //System.out.println(sum);
+                    } else
+                    if (sum % i >= j/20){
+                        sum -= j/20;
+                        count++;
+                        //System.out.println(sum);
+                    } else
+                    if (sum % i >= j/50){
+                        sum -= j/50;
+                        count++;
+                        //System.out.println(sum);
+                    } else {
+                        sum -= j/100;
+                        count++;
+                        //System.out.println(sum);
+                    }
+                }
+            }
+            return count;
+        }
+    public static void main(String[] args) {
+        ATM44 bank = new ATM44();
+        System.out.println(bank.countBanknotes(578));
+    }
+}
+______________________________________________________
+
+
+
+

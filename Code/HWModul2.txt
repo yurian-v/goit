@@ -1,0 +1,648 @@
+public class StringTest2 {
+    public static void main(String[] args) {
+        String x = "abc";
+        System.out.println(x);
+        System.out.println(x.length());
+
+        String concatenateResult = "ab" + "cd" + 66 + 77;
+        System.out.println(concatenateResult);
+
+        String diffCase = "AbCdEf";
+        System.out.println("diffCase.toLowerCase() = " + diffCase.toLowerCase());
+        System.out.println("diffCase.toUpperCase() = " + diffCase.toUpperCase());
+
+        //String text = "Java is great programming language";
+        //System.out.println("text.contains(\"Java\") = " + text.contains("Java"));
+
+        //boolean isFound = text.toLowerCase().contains("java".toLowerCase());
+        //System.out.println("isFound = " + isFound);
+        String text = "Java is great programming language";
+        System.out.println("search(text, \"Java\") = " + search(text,"Java"));
+
+        String java1 = "JaVa";
+        String java2 = "java";
+        //System.out.println("java1.equals(java2) = " + java1.equals(java2));
+        System.out.println("java1.equals(java2) = " + java1.equalsIgnoreCase(java2));
+
+        String sentence = "It is raining";
+                char at6 = sentence.charAt(6);
+        System.out.println("at6 = " + at6);
+
+        System.out.println("\"someText.\".endsWith (\".\") = " + "someText.".endsWith("."));
+        System.out.println("\"##Turbo##.\".startsWith(\"##\") = " + "##Turbo##.".startsWith("##"));
+
+        System.out.println("\"   \".isEmpty() = " + "   ".isEmpty());
+        System.out.println("\"     \".isBlank() = " + "     ".isBlank());
+
+        System.out.println("\"1\\t2\\t3\" = " + "1\t2\t3");
+        System.out.println("1\t2\t3");
+
+        String weather = "Cold and Raining";
+        weather = weather
+                .replace("Cold", "Warm")
+                .replace("Raining", "Windy");
+        System.out.println("weather = " + weather);
+
+        String dirtyOne = "    \n     Name    \n";
+        //System.out.println("dirtyOne = " + dirtyOne.trim());
+        System.out.println("dirtyOne = " + dirtyOne.strip());
+
+        System.out.println("\"12default33\".substring(2,9) = " + "12default33".substring(2, 9));
+    }
+    private static boolean search(String text, String search) {
+        return text.toLowerCase().contains(search.toLowerCase());
+    }
+}
+
+
+class DigitSplitter {
+    public int getFirstDigit(int number){
+        return number / 10;
+    }
+    public int getSecondDigit(int number){
+        return number % 10;
+    }
+    public static void main(String[] args) {
+        DigitSplitter tester = new DigitSplitter();
+        System.out.println(tester.getFirstDigit(15)); //Should be true
+        System.out.println(tester.getSecondDigit(15)); //Should be false
+
+    }
+}
+
+public class MoonRobot {
+
+    public boolean canOvercomeHole(int holeDepth, int batteryPercent){
+        return holeDepth < 34 || batteryPercent > 67;
+    }
+
+    //Test output
+    public static void main(String[] args) {
+        MoonRobot robot = new MoonRobot();
+
+        //Should be false
+        System.out.println("canOvercomeHole(50, 60) = " + robot.canOvercomeHole(50, 60));
+    }
+}
+
+public class MoonRobot1 {
+    public boolean canJumpOverHill(int hillHeight, int batteryPercent) {
+        return hillHeight <= 150 & batteryPercent >= 90;
+    }
+
+    //Test output
+    public static void main(String[] args) {
+        MoonRobot1 robot = new MoonRobot1();
+
+        //Should be true
+        System.out.println("canJumpOverHill(100, 90) = " + robot.canJumpOverHill(100, 90));
+    }
+}
+
+public class MoonRobot3 {
+
+    public boolean areSensorsOk(boolean isEngineWorking, boolean isRobotStanding){
+        return isEngineWorking ^ isRobotStanding;
+    }
+    public static void main(String[] args) {
+        MoonRobot3 robot = new MoonRobot3();
+
+        System.out.println("areSensorsOk(true, true) = " + robot.areSensorsOk(true, true));
+    }
+}
+
+public class MoonRobot4 {
+
+    public boolean shouldSleep(boolean isDayNow){
+        return !isDayNow;
+    }
+
+
+    public static void main(String[] args) {
+        MoonRobot4 robot = new MoonRobot4();
+
+        System.out.println("shouldSleep(true) = " + robot.shouldSleep(true));
+    }
+}
+
+class MoonRobotVespenGasDetector{
+    public boolean isAcidOk(int acidValue, int minAcid, int maxAcid){
+        return minAcid < acidValue & acidValue < maxAcid;
+    }
+    public boolean isDensityOk(int density){
+        return 1000 <= density & density <= 5000 || 10000 <= density & density <=15000;
+    }
+    public boolean isTemperatureOk(boolean cold){
+        return !cold;
+    }
+    public boolean isGroundOkForVespenGas(int acidValue, int minAcid, int maxAcid, int density, boolean cold){
+        return isAcidOk(100, 75, 150) && isDensityOk(7500) && isDensityOk(7500) && isTemperatureOk(false) && isGroundOkForVespenGas(120, 75, 150, 7500, false);
+
+    }
+    public static void main(String[] args) {
+        MoonRobotVespenGasDetector robot = new MoonRobotVespenGasDetector();
+
+        System.out.println("isAcidOk(true) = " + robot.isAcidOk(120, 75, 150));
+        System.out.println("isDensityOk(1500) = " + robot.isDensityOk(7500));
+        System.out.println("isDensityOk(3000) = " + robot.isDensityOk(3000));
+        System.out.println("isTemperatureOk(false) = " + robot.isTemperatureOk(false));
+        System.out.println("isGroundOkForVespenGas(120, 75, 150, 7500, false) = " + robot.isGroundOkForVespenGas(120, 75, 150, 7500, false));
+    }
+}
+
+
+public class MarsEarthHelper {
+    public int convertAppleCount(float count){
+        int a = (int)count;
+        return a;
+    }
+
+    public static void main(String[] args) {
+        MarsEarthHelper helper = new MarsEarthHelper();
+
+        //Should be 10
+        System.out.println("convertAppleCount(10f) = " + helper.convertAppleCount(10f));
+    }
+}
+
+public class MarsEarthHelper1 {
+    public int countAppleCount(int garden1Count, int garden2Count) {
+        return (int) garden1Count + garden2Count;
+    }
+    public static void main(String[] args) {
+        MarsEarthHelper1 helper = new MarsEarthHelper1();
+
+        System.out.println("countAppleCount(10, 7) = " + helper.countAppleCount(10, 7));
+    }
+}
+
+public class MarsEarthHelper3 {
+    public double calculateTotalAppleWeight(double treeAge) {
+        return (float)treeAge * 9.18;
+    }
+    public static void main(String[] args) {
+        MarsEarthHelper3 helper = new MarsEarthHelper3();
+        System.out.println("calculateTotalAppleWeight(1d) = " + helper.calculateTotalAppleWeight(1d));
+    }
+}
+
+class MarsValueConverter{
+    public int changeMoneyAmount(float startAmount, float toRemove){
+        return (int)(startAmount - toRemove);
+    }
+    public byte calculateMoneySum(int sum1, int         sum2){
+        return (byte)(sum1 + sum2);
+    }
+
+    public short halfOfMoney(double startMoney){
+        return (short)(startMoney / 2);
+    }
+
+    public static void main(String[] args) {
+        MarsValueConverter math = new MarsValueConverter();
+        System.out.println("changeMoneyAmount(100f, 40.5f) = " + math.changeMoneyAmount(100f, 40.5f));
+        System.out.println("calculateMoneySum(50, 40) = " + math.calculateMoneySum(50, 40));
+        System.out.println("halfOfMoney(1000.9999) = " + math.halfOfMoney(1000.9999));
+    }
+}
+
+public class ExonNames {
+    public boolean areNamesEqual(String name1, String name2){
+        return name1.equals(name2);
+    }
+    public static void main(String[] args) {
+        ExonNames names = new ExonNames();
+
+        //Should be true
+        boolean namesEqual = names.areNamesEqual("nm", "nm");
+        System.out.println("names.areNamesEqual(\"nm\", \"nm\") = " + namesEqual);
+    }
+}
+
+public class ExonNames11 {
+
+    public boolean isNameLucky(String name){
+        return name.contains("o") | name.contains("a");
+    }
+    public static void main(String[] args) {
+        ExonNames11 names = new ExonNames11();
+        System.out.println("names.isNameLucky(\"Bigo\") = " + names.isNameLucky("Exma"));
+    }
+}
+
+public class ExonNames22
+{
+
+    public String getNameCode(String name)
+    {
+        int length = name.length() - 1 ;
+        String code = String.valueOf(name.charAt(0)) + "" + String.valueOf(name.charAt(length));
+        return code.toUpperCase();
+    }
+    public static void main(String[] args)
+    {
+        ExonNames22 names = new ExonNames22();
+        System.out.println("names.isNameLucky(\"Bigo\") = " + names.getNameCode("Exma"));
+    }
+}
+
+
+public class ExonNames33
+{
+
+    public boolean isMoneyName(String name)
+    {
+        int length = name.length() - 1 ;
+        String code = String.valueOf(name.charAt(0)) +      "" + String.valueOf(name.charAt(length));
+        return code.charAt(0) >= '0' && code.charAt(0)      <= '9';
+
+    }
+
+    public static void main(String[] args)
+
+    {
+        ExonNames33 names = new ExonNames33();
+
+        boolean isMoneyName = names.isMoneyName("31Boss31");
+        System.out.println("names.isMoneyName(\"31Boss31\") = " + isMoneyName);
+    }
+}
+
+public class ExonNamesBest {
+
+
+    public boolean isMoneyName(String name) {
+        char firstLetter = name.charAt(0);
+        char lastLetter = name.charAt(name.length() - 1);
+
+        boolean firstLetterOk = firstLetter >= '0' && firstLetter <= '9';
+        boolean lastLetterOk = lastLetter >= '0' && lastLetter <= '9';
+
+        return firstLetterOk && lastLetterOk;
+    }
+
+    //Test output
+    public static void main(String[] args) {
+        ExonNamesBest names = new ExonNamesBest();
+
+        boolean isInvisible = names.isInvisibleName(" ");
+        System.out.println("names.isInvisibleName(\" \") = " + isInvisible);
+    }
+}
+
+
+public class ExonNamesNext {
+
+    public boolean isInvisibleName(String name){
+        return name.isBlank();
+    }
+    public static void main(String[] args) {
+        ExonNamesNext names = new ExonNamesNext();
+        boolean isInvisible = names.isInvisibleName(" ");       System.out.println("names.isInvisibleName(\" \") = " + isInvisible);
+    }
+}
+
+
+public class ExonNames {
+  
+  public String makeHalfOfName(String name){
+ int halfName = name.length();
+    String clearName = name.substring(0, halfName/2);
+    return clearName;
+  } 
+    public static void main(String[] args) {
+        ExonNames names = new ExonNames();
+
+        
+        String halfOfName = names.makeHalfOfName("Gurk");
+        System.out.println("names.makeHalfOfName(\"Gurk\") = " + names.makeHalfOfName("Gurk"));
+    }
+}
+
+class NameEncoderDecoder{
+
+public String encode(String name){
+        String codingName = name.replace("e", "1").replace("u", "2").replace("i", "3").replace("o", "4").replace("a", "5");
+            return "NOTFORYOU" + "" + codingName + "" + "YESNOTFORYOU";
+
+}
+public String decode(String name){
+        String deCodingName = name.replace("1", "e").replace("2", "u").replace("3", "i").replace("4", "0").replace("5", "a");
+        String deCodingNameSecond = deCodingName.replace ("NOTFORYOU", "").replace("YES", "");
+            return deCodingNameSecond;
+}
+
+public static void main(String[] args) {
+        NameEncoderDecoder names = new NameEncoderDecoder();
+       
+        String encode = names.encode("Crab");
+        System.out.println("Crab = " + names.encode("Gurk"));
+  
+  String decode = names.decode("NOTFORYOUCr5bYESNOTFORYOU");
+        System.out.println("NOTFORYOUCr5bYESNOTFORYOU = " + names.decode("NOTFORYOUCr5bYESNOTFORYOU"));
+}
+}
+__________________________________________________________________
+9.
+class YearVariablesTask {
+    public static void main (String[]args) {
+        byte allMonthCountButNotWinter = 9;
+        short february1996DayCount = 29;
+        int halfOfTotalSpringDayCount = 46;
+        long yearSecondCount = 31536000l;
+        float quarterOfMayDayCount = 7.8f;
+        double dayCountOfLongMonths = 217d;
+        char springLetter = 'r';
+        boolean isLeap1900 = false;
+        System.out.println (allMonthCountButNotWinter);
+        System.out.println(february1996DayCount);
+        System.out.println(halfOfTotalSpringDayCount);
+        System.out.println(yearSecondCount);
+        System.out.println(quarterOfMayDayCount);
+        System.out.println(dayCountOfLongMonths);
+        System.out.println(springLetter);
+        System.out.println(isLeap1900);
+    }
+}
+__________________________________________________________________
+10.
+class MathUtils {
+    public int sum(int a, int b) {
+int sum = a + b;
+return sum;
+    }
+
+    public static void main(String[] args) {
+        MathUtils math = new MathUtils();
+
+        //Should be 5
+        System.out.println("math.sum(3, 2) = " + math.sum(3, 2));
+    }
+}
+__________________________________________________________________
+13.
+class MathUtils {
+    public int sum(int a, int b) {
+        return a + b;
+    }
+    public int twicedSum(int a, int b){
+        return 2 * sum(a, b);
+    }
+}
+__________________________________________________________________
+14.
+class MarsCalculator{
+    public int sum(int a, int b, int c){
+        return a + b + c;
+    }
+    public int sub(int a, int b, int c){
+        return a - (b + c);
+    }
+    public int multiply(int a, int b, int c){
+        return sum (a, b, c) * sub (a, b, c);
+    }
+    public float divide(int a, int b, int c){
+        return sum (a, b, c) / 10f;
+    }
+}
+__________________________________________________________________
+17.
+class Counter{
+    public long current(long number){
+        return number;
+    }
+    public long next(long number){
+        return ++number;
+    }
+    public long prev(long number){
+        return --number;
+    }
+}
+__________________________________________________________________
+18.
+class BrokenKeyboardCalculator {
+    public int add(int a, int b){
+        int add = 0;
+        return a += b;
+    }
+    public int sub(int a, int b){
+        int sub = 0;
+        return a -= b;
+    }
+    public int multiply(int a, int b){
+        int multiply = 0;
+        return a *= b;
+    }
+    public int divide(int a, int b){
+        int divide = 0;
+        return a /= b;
+    }
+}
+__________________________________________________________________
+19.
+class ProfessorHelper {
+    public boolean areNumbersCool(int number1, int number2){
+        return number1 == number2;
+    }
+
+    //Test output
+    public static void main(String[] args) {
+        ProfessorHelper helper = new ProfessorHelper();
+        System.out.println("areNumbersCool(3, 3) = " + helper.areNumbersCool(3, 3)); //Should be true
+    }
+}
+__________________________________________________________________
+20. 
+class ProfessorHelper {
+
+    public boolean areNumbersFatal(int first, int second){
+        int midleResult = first * 5 + 3;
+        return midleResult == second;
+    }
+__________________________________________________________________
+23.
+class ProfessorHelper {
+    public boolean canPrincessMarry(int day){
+        return day >= 16;
+    }
+__________________________________________________________________
+24.
+class ProfShop{
+    public boolean isPriceOk(int price){
+        return price != 1000;
+    }
+    public float calculateRegularDiscountPrice(float price){
+        return price * 0.9f;
+    }
+    public boolean isDiscount50(int price){
+        return price * 4 ==1000;
+    }
+    public boolean isPriceHappy(int price, int year, int day){
+        return price == year * day;
+    }
+}
+__________________________________________________________________
+25.
+class NumberTester {
+    public boolean isEven(int number) {
+        return number % 2 == 0 ;
+    }
+__________________________________________________________________
+26.
+public boolean isOdd(int number) {
+        return number % 2 != 0;
+    }
+__________________________________________________________________
+27.
+class DigitSplitter{
+    public int getFirstDigit(int number){
+        return number / 10;
+    }
+    public int getSecondDigit(int number){
+        return number % 10;
+    }
+}
+__________________________________________________________________
+28.
+public class MoonRobot {
+    public boolean canOvercomeHole(int holeDepth, int batteryPercent){
+        return holeDepth < 34 || batteryPercent > 67;
+    }
+__________________________________________________________________
+29.
+ public boolean canJumpOverHill(int hillHeight, int batteryPercent){
+        return hillHeight <= 150 && batteryPercent >= 90;
+    }
+__________________________________________________________________
+30.
+public boolean areSensorsOk(boolean isEngineWorking, boolean isRobotStanding){
+        return isEngineWorking ^ isRobotStanding;
+    }
+__________________________________________________________________
+31.
+public boolean shouldSleep(boolean isDayNow){
+        return !isDayNow; 
+    }
+__________________________________________________________________
+32.
+class MoonRobotVespenGasDetector{
+    public boolean isAcidOk(int acidValue, int minAcid, int maxAcid){
+        return minAcid < acidValue & acidValue < maxAcid;
+    }
+    public boolean isDensityOk(int density){
+        return 1000 <= density & density <= 5000 || 10000 <= density & density <=15000;
+    }
+    public boolean isTemperatureOk(boolean cold){
+        return !cold;
+    }
+    public boolean isGroundOkForVespenGas(int acidValue, int minAcid, int maxAcid, int density, boolean cold){
+        return isAcidOk(100, 75, 150) && isDensityOk(7500) && isDensityOk(7500) && isTemperatureOk(false) && isGroundOkForVespenGas(120, 75, 150, 7500, false);
+
+    }
+}
+__________________________________________________________________
+33.
+public int convertAppleCount(float count){
+        int a = (int)count;
+        return a;
+    }
+__________________________________________________________________
+34.
+public byte countAppleCount(int garden1Count, int garden2Count) {
+        byte sum = 0;
+        return sum = (byte)(garden1Count + garden2Count);
+    }
+__________________________________________________________________
+35.
+public float calculateTotalAppleWeight(double treeAge) {
+        return (float)(treeAge * 9.18f);
+    }
+__________________________________________________________________
+36.
+class MarsValueConverter{
+    public int changeMoneyAmount(float startAmount, float toRemove){
+        return (int)(startAmount - toRemove);
+    }
+    public byte calculateMoneySum(int sum1, int sum2){
+        return (byte)(sum1 + sum2);
+    }
+    public short halfOfMoney(double startMoney){
+        return (short)(startMoney / 2);
+    }
+}
+__________________________________________________________________
+37.
+ public boolean areNamesEqual(String name1, String name2){
+        return name1.equals(name2);
+    }
+__________________________________________________________________
+38.
+public String makeFullName(String firstName, String lastName){
+       return (firstName.toLowerCase() + " " + lastName.toUpperCase());
+    }
+__________________________________________________________________
+39.
+public boolean isNameLucky(String name){
+        return name.contains("o") | name.contains("a");
+    }
+__________________________________________________________________
+40.
+public String getNameCode(String name){
+        int length = name.length() - 1 ;
+        String code = String.valueOf(name.charAt(0)) + "" + String.valueOf(name.charAt(length));
+        return code.toUpperCase();
+    }
+__________________________________________________________________
+41.
+public boolean isMoneyName(String name){
+        int length = name.length() - 1 ;
+        String code = String.valueOf(name.charAt(0)) +      "" + String.valueOf(name.charAt(length));
+        return code.charAt(0) >= '0' && code.charAt(0)      <= '9';
+    }
+__________________________________________________________________
+42.
+public boolean isInvisibleName(String name){
+        return name.isBlank();
+    }
+__________________________________________________________________
+43.
+    public String makeNamePositive(String name){
+        String replace = name.toLowerCase();
+        String replace1 = replace.replace("no", "yes");
+        return replace1;
+    }
+
+public String makeNamePositive(String name) {
+        return name
+                .replace("no", "yes")
+                .replace("No", "yes")
+                .replace("nO", "yes")
+                .replace("NO", "yes");
+    }
+__________________________________________________________________
+44.
+public String makeNameClean(String name){
+        return ("CLEAN" + name.trim() + "CLEAN");
+    }
+__________________________________________________________________
+45.
+public String makeHalfOfName(String name){
+ int halfName = name.length();
+    String clearName = name.substring(0, halfName/2);
+    return clearName;
+  } 
+__________________________________________________________________
+46.
+class NameEncoderDecoder{
+public String encode(String name){
+        String codingName = name.replace("e", "1").replace("u", "2").replace("i", "3").replace("o", "4").replace("a", "5");
+            return "NOTFORYOU" + "" + codingName + "" + "YESNOTFORYOU";
+
+}
+public String decode(String name){
+        String deCodingName = name.replace("1", "e").replace("2", "u").replace("3", "i").replace("4", "o").replace("5", "a");
+        String deCodingNameSecond = deCodingName.replace ("NOTFORYOU", "").replace("YES", "");
+            return deCodingNameSecond;
+}
+}
+__________________________________________________________________

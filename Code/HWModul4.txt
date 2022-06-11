@@ -1,0 +1,2027 @@
+2. Сделай поле name приватным. Напиши геттер и сеттер для этого поля 
+в соответствии с Java Code Conventions. Убери инициализацию поля name 
+значением "Voyager".
+______________________________________
+public class SpaceShip {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        if (name != null && !name.isBlank()) {
+            this.name = name;
+        }
+    }
+    public static void main(String[] args) {
+        SpaceShip ship = new SpaceShip();
+        System.out.println(ship.getName());
+        ship.setName("Walker");
+        System.out.println(ship.getName());
+    }
+}
+________________________________________________
+
+3. Допиши метод setName() так, чтобы:
+
+    если передать пустую строку (включая строку из одних пробелов и нечитаемых 
+символов), то полю name не будет присвоено эта пустая строка;
+    если передать строку длиной больше 100 символов, то полю name аналогично не 
+будет присвоена эта слишком длинная строка.
+
+____________________________________________________
+public class SpaceShip {
+    private String name;
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            if (name != null && !name.isBlank() && name.length() < 100) {
+                this.name = name;
+            }
+        }
+    public static void main(String[] args) {
+        SpaceShip ship = new SpaceShip();
+        ship.setName("Walker");
+        System.out.println(ship.getName()); //Should be Walker
+
+        ship.setName("");
+        System.out.println(ship.getName()); //Should be Walker, empty value ignored
+
+        ship.setName("Voyager ".repeat(100));
+        System.out.println(ship.getName()); //Should be Walker, too long value ignored
+    }
+}
+___________________________________________________________
+author version
+public class SpaceShip {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name.isBlank() || name.length() > 100) {
+            return;
+        }
+
+        this.name = name;
+    }
+
+_________________________________________________________________
+
+4. Создай приватное поле serialNumber строкового типа. Сделай 
+геттер и сеттер для этого поля.
+
+Учти, что структура серийного кода следующая - две буквы SN,
+ и шесть любых символов после букв (всего 8 символов, например SNAX65G8).
+
+Напиши сеттер так, чтобы если кто-то пытается установить неправильный 
+серийный номер, то эта попытка игнорировалась бы.
+
+__________________________________________________________________
+
+public class SpaceShip {
+    private String serialNumber;
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+      if ((serialNumber.length() == 8) && (serialNumber.contains("S"))) {
+            this.serialNumber = serialNumber;
+        }
+    }
+
+    public static void main(String[] args) {
+        SpaceShip ship = new SpaceShip();
+        ship.setSerialNumber("SN506788");
+        System.out.println(ship.getSerialNumber());
+        ship.setSerialNumber("EE123456");
+        System.out.println(ship.getSerialNumber());
+    }
+
+}
+______________________________________________________________________________
+author version
+
+    public void setSerialNumber(String serialNumber) {
+        if (serialNumber.length() != 8) {
+            return;
+        }
+
+        if (!serialNumber.startsWith("SN")) {
+            return;
+        }
+
+        this.serialNumber = serialNumber;
+    }
+__________________________________________________________________________
+
+5. Напиши метод printInfo(). Он выводит в консоль название и серийный 
+номер корабля в формате "Name is <NAME>, serial number is <SERIAL NUMBER>".
+
+Например, если имя корабля "Voyager" и серийный номер "SN504030", то метод 
+printInfo() должен вывести в консоль строку "Name is Voyager, serial number 
+is SN504030".
+
+_________________________________________________________________________
+public class SpaceShip {
+   private String name;
+    private String serialNumber;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        if (name != null && !name.isBlank()) {
+            this.name = name;
+        }
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+    public void setSerialNumber(String serialNumber) {
+        if (serialNumber != null && !serialNumber.isBlank()) {
+            this.serialNumber = serialNumber;
+        }
+    }
+    public void printInfo(){
+        System.out.println("Name is " + name + ", serial number is " + serialNumber);
+        return;
+    }
+    public static void main(String[] args) {
+        SpaceShip ship = new SpaceShip();
+
+        ship.setName("Voyager");
+        ship.setSerialNumber("SN506788");
+
+        //Name is Voyager, serial number is SN504030
+        ship.printInfo();
+    }
+}
+________________________________________________________________________
+
+6. Напиши класс SpaceRocketLauncher, описывающий космическую ракетную установку.
+
+У этого класса должны быть следующие приватные поля:
+
+    bigRocketCount - тип int, количество больших ракет
+    smallRocketCount - тип int, количество маленьких ракет
+
+Для обеих полей сделай сеттеры и геттеры. Напиши сеттеры так, чтобы если мы 
+передаем количество ракет меньше 0 или же больше 100, то такой вызов бы игнорировался.
+
+Также напиши в классе следующие методы:
+
+    public void launchBigRocket(). Этот метод проверяет количество больших ракет 
+(bigRocketCount), и если это количество больше 0 - отнимает одну ракету у поля 
+bigRocketCount, и выводит в консоль текст "Launch big rocket".
+    public void launchSmallRocket(). Этот метод проверяет количество маленьких 
+ракет (smallRocketCount), и если это количество больше 0 - отнимает одну ракету 
+у поля smallRocketCount, и выводит в консоль текст "Launch small rocket".
+    public int getTotalPower(). Этот метод считает общую огневую мощь ракетной 
+установки из рассчета, что каждая оставшаяся большая ракета дает 100 единиц мощи, 
+каждая маленькая ракета - 50 единиц мощи.
+______________________________________________________________________
+public class SpaceRocketLauncher {
+    private int smallRocketCount;
+    private int bigRocketCount;
+
+    public int getBigRocketCount() {
+        return bigRocketCount;
+    }
+
+    public void setBigRocketCount(int bigRocketCount) {
+        if(bigRocketCount > 0 && bigRocketCount <= 100)
+        this.bigRocketCount = bigRocketCount;
+    }
+
+    public int getSmallRocketCount() {
+        return smallRocketCount;
+    }
+
+    public void setSmallRocketCount(int smallRocketCount) {
+        if (smallRocketCount > 0 && smallRocketCount <= 100)
+        this.smallRocketCount = smallRocketCount;
+    }
+    public int launchBigRocket() {
+        if(bigRocketCount > 0) {
+            System.out.println("Launch big rocket");
+          this.bigRocketCount = bigRocketCount - 1;
+        }
+        return 0;
+    }
+
+    public int launchSmallRocket() {
+        if(smallRocketCount > 0) {
+            System.out.println("Launch small rocket");
+          this.smallRocketCount = smallRocketCount - 1;
+        }
+        return 0;
+    }
+
+    public int getTotalPower() {
+        return getBigRocketCount() * 100 + getSmallRocketCount() * 50;
+    }
+}
+_________________________________________________________________________
+
+7. Напиши класс Engine. У этого класса должно быть приватное поле power типа int. 
+Создай геттер и сеттер для этого поля.
+
+Также создай метод public String getFuelType(), который возвращает тип топлива, 
+на котором работает двигатель. Этот метод должен возвращать строку "A500" - это 
+стандартное топливо.
+
+________________________________________________________________________
+
+public class Engine {
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    private int power;
+
+    public String getFuelType(){
+        System.out.println("A500");
+
+        return "";
+    }
+}
+___________________________________________________________________________
+author version
+
+class Engine {
+    private int power;
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public String getFuelType() {
+        return "A500";
+    }
+
+    public static void main(String[] args) {
+        Engine basicEngine = new Engine();
+        System.out.println(basicEngine.getFuelType()); //A500
+
+        Engine xFuelEngine = new XFuelEngine();
+        System.out.println(xFuelEngine.getFuelType()); //XFuel
+    }
+}
+________________________________________________________
+
+8. Напиши класс XFuelEngine, который унаследуется от класса Engine. 
+Переопредели в классе XFuelEngine метод getFuelType(), чтобы тот возвращал 
+строку "XFuel".
+Примеры тестов
+
+    класс XFuelEngine унаследован от класса Engine;
+    вызов System.out.println(new Engine().getFuelType()) выводит в консоль "A500";
+    вызов System.out.println(new XFuelEngine().getFuelType() выводит в консоль "XFuel".
+___________________________________________________________
+
+class Engine {
+        private int power;
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public String getFuelType() {
+        return "A500";
+    }
+}
+class XFuelEngine extends Engine{
+        @Override
+        public String getFuelType() {
+            return "XFuel";
+        }
+
+    public static void main(String[] args) {
+        Engine basicEngine = new Engine();
+        System.out.println(basicEngine.getFuelType()); //A500
+
+        Engine xFuelEngine = new XFuelEngine();
+        System.out.println(xFuelEngine.getFuelType()); //XFuel
+    }
+}
+_________________________________________________________
+9. 
+    добавить в класс XFuelEngine строковое поле serialNumber с модификатором 
+доступа protected, и сделать для него публичный сеттер. Геттер делать не нужно
+    создать новый класс AdvancedXFuelEngine, который унаследуется от класса 
+XFuelEngine. В этом классе создать метод printInfo(), который будет выводить 
+в консоль серийный номер и мощность двигателя в формате 
+"Serial number is <SERIAL NUMBER>, power is <POWER>".
+
+Примеры тестов
+
+Выполнение кода:
+
+AdvancedXFuelEngine engine = new AdvancedXFuelEngine();
+engine.setPower(1000);
+engine.setSerialNumber("SN504030");
+engine.printInfo(); //Serial number is SN504030, power is 1000
+
+выведет в консоль "Serial number is SN504030, power is 1000"
+____________________________________________________________________________
+
+class Engine {
+    private int power;
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public String getFuelType() {
+        return "A500";
+    }
+}
+class XFuelEngine extends Engine{
+
+        protected String serialNumber;
+
+        public void setSerialNumber(String serialNumber) {
+            this.serialNumber = serialNumber;
+        }
+        public String getFuelType() {
+            return "XFuel";
+        }
+}
+class AdvancedXFuelEngine extends XFuelEngine {
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    private int power;
+
+    public void printInfo() {
+        System.out.println("Serial number is " + serialNumber + ", power is " + power);
+    }
+
+    public static void main(String[] args) {
+        AdvancedXFuelEngine engine = new AdvancedXFuelEngine();
+        engine.setPower(1000);
+        engine.setSerialNumber("SN504030");
+        engine.printInfo(); //Serial number is SN504030, power is 1000
+    }
+}
+10. 
+Напиши класс Tanker, у которого есть:
+
+    приватное поле serialNumber строкового типа, геттер и сеттер для этого поля;
+    метод protected String getFuelType(), который возвращает строку "A500" - 
+базовый вид топлива;
+    метод public void refuel(int amount). Он принимает целое число - количество 
+топлива, которое заправляем, и печатает строку вида - "Add <AMOUNT> of <FUEL TYPE>, 
+tanker serial number is <SERIAL NUMBER>". Вместо <AMOUNT> подставь значение 
+параметра amount, вместо <FUEL TYPE> - значение getFuelType(), вместо <SERIAL NUMBER> 
+- значение поля serialNumber.
+
+Напиши класс XFuelTanker, у которого переопредели метод getFuelType(). 
+Этот метод должен возвращать строку "XFuel".
+
+Напиши класс MX200Tanker, у которого переопредели метод getFuelType().
+ Этот метод должен возвращать строку "MX200".
+Примеры тестов
+
+Исполнение кода:
+
+Tanker tanker = new Tanker();
+tanker.setSerialNumber("SN504030");
+tanker.refuel(300);
+
+выведет в консоль "Add 300 of A500, tanker serial number is SN504030".
+
+Исполнение кода:
+
+Tanker tanker = new XFuelTanker();
+tanker.setSerialNumber("SN504030");
+tanker.refuel(300);
+
+выведет в консоль "Add 300 of XFuel, tanker serial number is SN504030".
+
+Исполнение кода:
+
+Tanker tanker = new MX200Tanker();
+tanker.setSerialNumber("SN504030");
+tanker.refuel(300);
+
+выведет в консоль "Add 300 of MX200, tanker serial number is SN504030".
+_______________________________________________________________________
+class Tanker {
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    private String serialNumber;
+
+    protected String getFuelType(){
+        return "A500";
+    }
+
+    public void refuel(int amount){
+        System.out.println("Add " + amount + " of " + getFuelType() + ", tanker serial number is " + serialNumber);
+    }
+}
+
+class XFuelTanker extends Tanker{
+        @Override
+        protected String getFuelType() {
+            return "XFuel";
+        }
+    }
+
+    class MX200Tanker extends Tanker{
+        @Override
+        protected String getFuelType() {
+            return "MX200";
+        }
+    }
+________________________________________________________________________
+11
+Сделай методы getType() и getTicketPrice() абстрактными.
+
+____________________________________________________________
+
+abstract class Passenger {
+    public abstract String getType();
+    public abstract int getTicketPrice();
+}
+_______________________________________________
+
+12.Сделай два класса, каждый из которых унаследуется от класса Passenger.
+ В каждом классе реализуй методы String getType() и int getTicketPrice().
+
+Первый класс должен называться RegularPassenger. У этого класса метод 
+getType() должен возвращать строку "Regular", метод getTicketPrice() возвращать 
+число 199.
+
+Второй класс должен называться VIPPassenger. Метод getType() этого класса 
+должен возвращать строку "VIP", метод getTicketPrice() - возвращать число 399.
+______________________________________________________________________
+    abstract class Passenger {
+        public abstract String getType();
+        public abstract int getTicketPrice();
+    }
+
+    class RegularPassenger extends Passenger {
+        public String getType() {
+            return "Regular";
+        }
+        public int getTicketPrice() {
+            return 199;
+        }
+    }
+
+    class VIPPassenger extends Passenger {
+
+        public String getType() {
+            return "VIP";
+        }
+
+        public int getTicketPrice() {
+            return 399;
+        }
+    }
+_____________________________________________________
+
+13.
+У нас будет класс LaunchCalculator, у которого будет метод 
+int calculateTotalPrice(Spaceport spaceport, int passengerCount).
+ Он принимает два параметра - Spaceport (космопорт, из которого 
+взлетаем), и passengerCount - количество пассажиров.
+
+Но LaunchCalculator сам ничего не считает. Он просто переадресовывает 
+всю работу объекту типа Spaceport, который и делает всю работу.
+
+При таком подходе, если у нас появятся новые космопорты со сложной 
+логикой рассчета стоимости, достаточно будет дописать новый 
+наследник от класса Spaceport. Остальная часть программы не изменится.
+
+
+Задача
+
+Классы LaunchCalculator и абстрактный класс Spaceport уже написаны.
+ Тебе нужно написать классы JupiterStar, MercuryBeat и SunHeaven, 
+в которых будет зашита логика рассчета стоимости взлета ракеты.
+_______________________________________________________
+
+class LaunchCalculator {
+    public int calculateTotalPrice(Spaceport spaceport, int passengerCount) {
+        return spaceport.calculateTotalPrice(passengerCount);
+    }
+
+    public static void main(String[] args) {
+        LaunchCalculator calculator = new LaunchCalculator();
+
+        int jupiterStarPrice = calculator.calculateTotalPrice(new JupiterStar(), 100);
+        System.out.println("JupiterStar price = " + jupiterStarPrice); //700
+
+        int mercuryBeatPrice = calculator.calculateTotalPrice(new MercuryBeat(), 100);
+        System.out.println("MercuryBeat price = " + mercuryBeatPrice); //1500
+
+        int sunHeavenPrice = calculator.calculateTotalPrice(new SunHeaven(), 100);
+        System.out.println("SunHeaven price = " + sunHeavenPrice); //2000
+    }
+}
+
+abstract class Spaceport {
+    public abstract int calculateTotalPrice(int passengerCount);
+}
+class JupiterStar extends Spaceport {
+    @Override
+    public int calculateTotalPrice(int passengerCount) {
+        return (500 + passengerCount * 2);
+    }
+}
+
+class MercuryBeat extends Spaceport {
+    @Override
+    public int calculateTotalPrice(int passengerCount) {
+        return (passengerCount * 15);
+    }
+}
+
+class SunHeaven extends Spaceport {
+    @Override
+    public int calculateTotalPrice(int passengerCount) {
+        return 2000;
+    }
+}
+____________________________________________________________
+
+14. 
+
+___Задание
+
+Напиши класс с именем Copyright, у которого будет метод 
+public void print(). Метод выводит в консоль текст 
+"SpaceWarriors Inc.".
+
+Класс должен быть финальным, чтобы никто не смог 
+унаследоваться от этого класса.
+____________________________________________
+
+final class Copyright{
+  public void print(){
+  System.out.println("SpaceWarriors Inc.");
+  }
+}
+________________________________________________
+
+15.
+Задание
+
+Напиши класс SpaceshipCalc. У этого класса должны быть 
+следующие методы:
+
+    int calculateAirBalloons(int passengerCount). Этот метод
+ возвращает общее количество баллонов со сжатым воздухом, 
+которое нужно взять на космический корабль, из рассчета 10
+ баллонов на одного пассажира. Поскольку баллоны с воздухом 
+- это критическая информация, сделай метод финальным, чтобы 
+даже если кто-то унаследуется от класса SpaceshipCalc, он 
+не мог переопределить этот метод.
+
+    int calculateBookCount(int passengerCount). Этот метод 
+возвращает количество бумажных книг, которое может взять 
+на борт космический корабль, из рассчета 2 книги на одного 
+пассажира.
+
+________________________________________________
+
+public class SpaceshipCalc {
+    final int calculateAirBalloons(int passengerCount){
+        return passengerCount * 10;
+    }
+    int calculateBookCount(int passengerCount){
+        return passengerCount * 2;
+    }
+}
+__________________________________________________
+16.
+Создай класс Planets. В этом классе создай следующие
+ константы типа String и задай им следующие значения:
+
+    MERCURY со значением "Mercury"
+    VENUS со значением "Venus"
+    EARTH со значением "Earth"
+    MARS со значением "Mars"
+    JUPITER со значением "Jupiter"
+    SATURN со значением "Saturn"
+    URANUS со значением "Uranus"
+    NEPTUNE со значением "Neptune"
+
+Поскольку это константы, каждая из них должна быть:
+
+    публичной
+    статической
+    финальной
+_____________________________________________________
+public class Planets {
+   public static final String MERCURY = "Mercury";
+   public static final String VENUS = "Venus";
+   public static final String EARTH = "Earth";
+   public static final String MARS = "Mars";
+   public static final String JUPITER = "Jupiter";
+   public static final String SATURN = "Saturn";
+   public static final String URANUS = "Uranus";
+   public static final String NEPTUNE = "Neptune";
+}
+_____________________________________________________
+17. 
+_Задание
+
+Создай класс SpaceportMessages. В этом классе создай 
+публичный статичный метод String generateLandingMessage
+(String shipName, String spaceport, String time),
+ который принимает три параметра - название корабля, 
+название космопорта, и время прилета корабля.
+
+Этот метод возвращает строку вида "Spaceship <shipName> 
+landing at <spaceport>, time is <time>". Вместо <shipName>, 
+<spaceport> <time> подставляются соответствующие параметры.
+____________________________________________________
+
+public class SpaceportMessages {
+    public static String generateLandingMessage(String shipName, String spaceport, String time){
+        return "Spaceship " + shipName + " landing at " + spaceport + ", time is " + time;
+    }
+}
+___________________________________________________
+
+18. 
+Задача
+
+Создай класс с именем SpaceUtils.
+
+В этом классе создай следующие константы 
+и сразу проинициализируй их значениями:
+
+    PLANET_COUNT типа int со значением 8;
+    HOME_PLANET_NAME типа String со значением "Earth";
+    HOME_STAR_NAME типа String со значением "Sun"
+
+Также создай в этом классе публичные статические методы:
+
+    String pluralPlanets(int planetCount). Параметр 
+planetCount может быть от 1 и больше. Если параметр 
+planetCount равен 1, то возвращается строка "1 planet".
+ Если же параметр planetCount больше 1, то возвращаем 
+строку "X planets", где вместо X - значение planetCount.
+    String generateStartMessage(String shipName, String 
+time). Возвращает строку вида "Ship <shipName> start at 
+<time>". Вместо <ship> и <time> подставляются значения 
+переменных shipName и time.
+___________________________________________________
+
+public class SpaceUtils {
+    public static final int PLANET_COUNT = 8;
+    public static final String HOME_PLANET_NAME = "Earth";
+    public static final String HOME_STAR_NAME = "Sun";
+
+    public static String pluralPlanets(int planetCount){
+        if (planetCount == 1) {
+            return "1 planet";
+        } else {
+            return planetCount + " planets";
+        }
+    }
+    public static String generateStartMessage(String shipName, String time){
+        return "Ship " + shipName + " start at " + time;
+    }
+}___________________________________________________________
+
+19.Напиши класс Point, описывающий точку в пространстве. 
+Создай у него три приватных поля типа int, с именами x, y и z. 
+Для каждого поля создай публичный сеттер и геттер. Запусти код, 
+и убедись, что созданные две точки (p1 и p2) хоть и имеют одинаковые 
+координаты, но метод equals для них работает неправильно, и возвращает false.
+___________________________________________________________________________
+
+class PointTest {
+
+        public static void main(String[] args) {
+            Point p1 = new Point();
+            p1.setX(1);
+            p1.setY(1);
+            p1.setZ(1);
+
+            Point p2 = new Point();
+            p2.setX(1);
+            p2.setY(1);
+            p2.setZ(1);
+
+            System.out.println(p1.equals(p2)); //Will be false
+        }
+    }
+class Point extends PointTest{
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    private int x;
+
+    public int getY() {
+        return y;
+    }
+_________________________________________________________
+20. 
+Переопредели в классе Point метод equals(), чтобы вызов 
+equals() для объектов класса Point с одинаковыми 
+координатами возвращал true, и false, если координаты 
+отличаются. Обязательно допиши аннотацию @Override.
+_________________________________________________________
+
+class PointTest {
+    public static void main(String[] args) {
+        Point p1 = new Point();
+        p1.setX(1);
+        p1.setY(1);
+        p1.setZ(1);
+
+        Point p2 = new Point();
+        p2.setX(1);
+        p2.setY(1);
+        p2.setZ(1);
+
+        Point p3 = new Point();
+        p3.setX(2);
+        p3.setY(2);
+        p3.setZ(3);
+
+        System.out.println(p1.equals(p2)); //Should be true
+        System.out.println(p1.equals(p3)); //Should be false
+    }
+}
+
+class Point {
+    private int x;
+    private int y;
+    private int z;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+  @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y && z == point.z;
+    }
+}
+_____________________________________________________________________
+
+21. 
+Напиши в классе Point метод hashCode(), который бы работал, как 
+описано выше. Можешь использовать Objects.hash() (тогда не забудь 
+импортировать этот класс из пакета java.util). Либо же можешь 
+написать свою реализацию, что будет даже круче.
+_____________________________________________________________________
+import java.util.Objects;
+class PointTest {
+    public static void main(String[] args) {
+        Point p1 = new Point();
+        p1.setX(1);
+        p1.setY(1);
+        p1.setZ(1);
+
+        Point p2 = new Point();
+        p2.setX(1);
+        p2.setY(1);
+        p2.setZ(1);
+
+        Point p3 = new Point();
+        p3.setX(2);
+        p3.setY(2);
+        p3.setZ(3);
+
+        System.out.println(p1.equals(p2)); //Should be true
+        System.out.println(p1.equals(p3)); //Should be false
+        System.out.println(p1.hashCode() == p2.hashCode()); //Should be true
+        System.out.println(p1.hashCode() == p3.hashCode()); //Can be true or false
+    }
+}
+
+class Point {
+    private int x;
+    private int y;
+    private int z;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y &&
+                z == point.z;
+    }
+  @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+}
+_____________________________________________________________
+
+22.
+Напиши класс StarTrack. Объяви у этого класса два приватных поля 
+типа Point с именами start и finish. Напиши сеттеры 
+и геттеры для этих полей.
+
+Реализуй методы equals() и hashCode() для класса StarTrack. 
+Два объекта StarTrack считаются равны, если у них равны 
+точки start и finish.
+______________________________________________________________
+
+import java.util.Objects;
+
+class StarTrackTest {
+    public static void main(String[] args) {
+        Point p1 = new Point();
+        p1.setX(1);
+        p1.setY(1);
+        p1.setZ(1);
+
+        Point p2 = new Point();
+        p2.setX(1);
+        p2.setY(1);
+        p2.setZ(1);
+
+        Point p3 = new Point();
+        p3.setX(2);
+        p3.setY(2);
+        p3.setZ(3);
+
+        StarTrack track1 = new StarTrack();
+        track1.setStart(p1);
+        track1.setFinish(p2);
+
+        StarTrack track2 = new StarTrack();
+        track2.setStart(p1);
+        track2.setFinish(p2);
+
+        StarTrack track3 = new StarTrack();
+        track3.setStart(p1);
+        track3.setFinish(p3);
+
+        System.out.println(track1.equals(track2)); //Should be true
+        System.out.println(track1.equals(track3)); //Should be false
+        System.out.println(track1.hashCode() == track2.hashCode()); //Should be true
+
+    }
+}
+
+class Point {
+    private int x;
+    private int y;
+    private int z;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y &&
+                z == point.z;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+
+    public static void main(String[] args) {
+        Point p1 = new Point();
+        p1.setX(1);
+        p1.setY(1);
+        p1.setZ(1);
+
+        Point p2 = new Point();
+        p2.setX(1);
+        p2.setY(1);
+        p2.setZ(1);
+
+        System.out.println(p1.equals(p2));
+
+        System.out.println(Objects.hash(1, 2, 3));
+    }
+}
+
+class StarTrack {
+    private Point start;
+    private Point finish;
+
+    public Point getStart() {
+        return start;
+    }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public Point getFinish() {
+        return finish;
+    }
+
+    public void setFinish(Point finish) {
+        this.finish = finish;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StarTrack starTrack = (StarTrack) o;
+        return Objects.equals(start, starTrack.start) && Objects.equals(finish, starTrack.finish);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, finish);
+    }
+}
+_______________________________________________________________
+23.
+Переопредели метод toString(), чтобы при выводе объекта класса 
+RocketLauncher в консоль выводилась строка вида "Size is <size>, 
+rocket count is <rocketCount>". Вместо <size> подставь значение 
+поля size, вместо <rocketCount> - значение поля rocketCount.
+_______________________________________________________________
+
+class RocketLauncher {
+    private String size;
+    private int rocketCount;
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public int getRocketCount() {
+        return rocketCount;
+    }
+
+    public void setRocketCount(int rocketCount) {
+        this.rocketCount = rocketCount;
+    }
+    
+    @Override
+    public String toString() {
+        return "Size is " + size + ", rocket count is " + rocketCount;
+    }
+
+    public static void main(String[] args) {
+        RocketLauncher launcher = new RocketLauncher();
+        launcher.setSize("big");
+        launcher.setRocketCount(50);
+
+        //Should be - Size is big, rocket count is 50
+        System.out.println(launcher);
+    }
+}
+_____________________________________________________________
+24.
+В Междугалактической Гильдии Космоходцев звезды принято считать
+ следующим образом:
+
+    1000 звезд записывается символом X;
+    100 звезд записывается символом Y;
+    10 звезд записывается символом Z;
+    1 звезда записывается символом *.
+
+Таким образом, любое число звезд можно перевести в такую понятную 
+всем участникам гильдии запись.
+
+Несколько примеров:
+
+    1001 звезда - это X*;
+    576 звезд - это YYYYYZZZZZZZ******
+
+Нужно использовать минимальное число символов. То есть, например, 
+101 звезду нужно представить в виде Y*, но не в виде ZZZZZZZZZZ*.
+
+На заводе, где ты фрилансишь, тебя попросили написать класс для 
+такой записи числа звезд.
+Задача
+
+Напиши класс Stars. В этом классе объяви поле count типа int - 
+количество звезд.
+
+Переопредели в классе Stars метод toString(). Он должен возвращать 
+количество звезд в принятом в Междугалактической 
+Гильдии Космоходцев формате.
+
+_________________________________________________________________
+
+public class Stars {
+    private  int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String Operations() {
+        for (int d = 0; d < ((count/1000)%10); d++) {
+            System.out.print("X");
+        }
+        for (int c = 0; c < ((count/100)%10); c++){
+            System.out.print("Y");
+        }
+        for (int b = 0; b < ((count/10)%10); b++){
+            System.out.print("Z");
+        }
+        for (int a = 0; a < count%10; a++){
+            System.out.print("*");
+        }
+        return "";
+    }
+
+    @Override
+    public String toString() {
+        if (count== 0) {
+            return "";
+        }
+        return Operations();
+    }
+
+    public static void main(String[] args) {
+        Stars stars = new Stars();
+        stars.setCount(8220);
+        System.out.println(stars);
+        System.out.println(stars.getCount());
+    }
+}
+__________________________________________________
+25. 
+Ты знаешь, что планеты отличаются от прочих небесных 
+тел. Есть определенные критерии, по которым можем 
+понять, что Марс и Земля - это планета, а Луна - нет.
+
+Ты моделируешь космос, в котором может быть множество
+ небесных тел. Какие-то небесные тела являются
+ планетами, какие-то нет.
+
+Тебе нужно написать иерархию классов, которой можно 
+будет представить небесные тела. И написать класс, 
+который сможет определить - является ли переданное 
+небесное тело планетой.
+
+
+Задание
+
+Создай абстрактный класс SpaceObject.
+
+Создай абстрактный класс Planet, который унаследуется
+ от SpaceObject.
+
+Создай класс Mars, который унаследуется от Planet.
+
+Создай класс Moon, который унаследуется от SpaceObject.
+
+Создай класс PlanetTester. У этого класса должен быть 
+метод String test(SpaceObject object), который 
+принимает небесное тело, и возвращает "planet", если 
+переданное тело является планетой (в иерархии классов 
+объекта есть класс Planet). В противном случае метод 
+возвращает "not planet".
+_______________________________________________________
+
+abstract class SpaceObject {
+}
+abstract class Planet extends SpaceObject {
+}
+class Mars extends Planet{
+}
+class Moon extends SpaceObject{
+}
+class PlanetTester {
+
+    public String test(SpaceObject object){
+        //System.out.println(object instanceof SpaceObject);
+        if(object instanceof Planet){
+            return "planet";
+        };
+        return "not planet";
+    }
+}
+_________________________________________________________
+
+26.
+Создай класс FirNum. У этого класса создай метод 
+public int calc(int n). Он принимает целое число, 
+и возвращает его же. Это будет основа для всех 
+дальнейших алгоритмов.
+________________________________________________________
+class FirTest {
+    public int test(FirNum firNum, int number) {
+        return firNum.calc(number);
+    }
+
+    public static void main(String[] args) {
+        FirNum firNum = new FirNum();
+        FirTest firTest = new FirTest();
+
+        //Should be 10
+        System.out.println(firTest.test(firNum, 10));
+    }
+}
+class FirNum {
+    public int calc(int n){
+        return n;
+    }
+}
+______________________________________________________
+27. 
+Уметь посчитать сумму чисел от единицы до указанного 
+числа - это базовый навык для любого ребенка планеты 
+Фир. так делать .
+
+Чтобы твой код был совместим с уже существующим кодом, 
+унаследуйся от класса FirNum, и переопредели 
+метод calc().
+
+Задание
+
+Создай класс FirNumSum, который наследуется от 
+класса FirNum. Переопредели у этого класса метод calc()
+ так, чтобы он возвращал сумму чисел от 1 до 
+переданного параметра n включительно.
+_____________________________________________________
+package HW4;
+class FirTest {
+    public int test(FirNum firNum, int number) {
+        return firNum.calc(number);
+    }
+
+    public static void main(String[] args) {
+        FirNum firNum = new FirNumSum();
+        FirTest firTest = new FirTest();
+
+        //Should be 6
+        System.out.println(firTest.test(firNum, 3));
+    }
+}
+
+class FirNum {
+    public int calc(int n) {
+        return n;
+    }
+}
+class FirNumSum extends FirNum {
+    @Override
+    public int calc(int n) {
+        int sum = 0;
+        for (int i = 0; i <= n; i++){
+            sum = sum + i;
+        }
+        return sum;
+    }
+}
+__________________________________________________
+
+28.
+Создай класс FirNumFactorial, который наследуется
+ от класса FirNum. Переопредели у этого класса метод 
+calc() так, чтобы он возвращал факториал n.
+_____________________________________________________
+
+class FirTest {
+    public int test(FirNum firNum, int number) {
+        return firNum.calc(number);
+    }
+
+    public static void main(String[] args) {
+        FirNum firNum = new FirNumFactorial();
+        FirTest firTest = new FirTest();
+
+        //Should be 120
+        System.out.println(firTest.test(firNum, 5));
+    }
+}
+
+class FirNum {
+    public int calc(int n) {
+        return n;
+    }
+}
+
+class FirNumSum extends FirNum {
+    @Override
+    public int calc(int n) {
+        int sum = 0;
+        for(int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        return sum;
+    }
+}
+class FirNumFactorial extends FirNum {
+    @Override
+    public int calc(int n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            return n * calc(n - 1);
+        }
+//        int fact = 1;
+//        for(int i = 1; i <= n; i++) {
+//            fact = fact * i;
+//        }
+//        return fact;
+    }
+}
+_________________________________________________
+29.
+Создай класс FirNumMultiplyOdd, который 
+наследуется от класса FirNum. Переопредели у 
+этого класса метод calc() так, чтобы он 
+возвращал произведение нечетных чисел от 1 
+до n включительно.
+________________________________________________
+class FirTest {
+    public int test(FirNum firNum, int number) {
+        return firNum.calc(number);
+    }
+
+    public static void main(String[] args) {
+        FirNum firNum = new FirNumMultiplyOdd();
+        FirTest firTest = new FirTest();
+
+        //Should be 15
+        System.out.println(firTest.test(firNum, 5));
+    }
+}
+
+class FirNum {
+    public int calc(int n) {
+        return n;
+    }
+}
+
+class FirNumSum extends FirNum {
+    @Override
+    public int calc(int n) {
+        int sum = 0;
+        for(int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        return sum;
+    }
+}
+
+class FirNumFactorial extends FirNum {
+    @Override
+    public int calc(int n) {
+        int result = 1;
+        for(int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+
+class FirNumMultiplyOdd extends FirNum {
+    @Override
+    public int calc(int n) {
+        int odd = 1;
+        for(int i = 1; i <= n; i++) {
+            if (i%2 != 0) {
+                odd = odd * i;
+            }
+        }
+        return odd;
+    }
+}
+______________________________________________
+30.
+
+Создай класс FirNumFizzBuzz, который 
+наследуется от класса FirNum. Переопредели 
+у этого класса метод calc() так, чтобы он 
+возвращал сумму чисел от 1 до n включительно 
+согласно алгоритма FizzBuzz.
+_______________________________________________
+
+class FirTest {
+    public int test(FirNum firNum, int number) {
+        return firNum.calc(number);
+    }
+
+    public static void main(String[] args) {
+        FirNum firNum = new FirNumFizzBuzz();
+        FirTest firTest = new FirTest();
+
+        //Should be 83
+        System.out.println(firTest.test(firNum, 20));
+    }
+}
+
+
+class FirNum {
+    public int calc(int n) {
+        return n;
+    }
+}
+
+
+
+
+//    task 27. Создай класс FirNumSum, который наследуется от класса
+//        FirNum. Переопредели у этого класса метод calc()
+//        так, чтобы он возвращал сумму чисел от 1 до
+//        переданного параметра n включительно.
+class FirNumSum extends FirNum {
+    @Override
+    public int calc(int n) {
+        int sum = 0;
+        for(int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        return sum;
+    }
+}
+
+//      task 28. Создай класс FirNumFactorial, который наследуется от
+//              класса FirNum. Переопредели у этого класса метод
+//              calc() так, чтобы он возвращал факториал n.
+class FirNumFactorial extends FirNum {
+    @Override
+    public int calc(int n) {
+        int result = 1;
+        for(int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+//        task 29. Создай класс FirNumMultiplyOdd, который наследуется
+//                от класса FirNum. Переопредели у этого класса метод
+//                calc() так, чтобы он возвращал произведение нечетных
+//                чисел от 1 до n включительно.
+
+class FirNumMultiplyOdd extends FirNum {
+    @Override
+    public int calc(int n) {
+        int odd = 1;
+        for(int i = 1; i <= n; i++) {
+            if (i%2 != 0) {
+                odd = odd * i;
+            }
+        }
+        return odd;
+    }
+}
+
+//task 29. Создай класс FirNumFizzBuzz, который наследуется
+//        от класса FirNum. Переопредели у этого класса метод
+//        calc() так, чтобы он возвращал сумму чисел от 1 до n
+//        включительно согласно алгоритма FizzBuzz.
+class FirNumFizzBuzz extends FirNum {
+    @Override
+    public int calc(int n) {
+        int three = 0;
+        int five = 0;
+        int result = 0;
+        for (int i = 1; i <= n; i++) {
+            if (i % 15 == 0){
+            } else if (i % 3 == 0) {
+                three = three + i;
+            } else if (i % 5 == 0){
+                five = five + i;
+            }
+        }
+        return result = five + three;
+    }
+}
+________________________________________________________
+31. 
+Половина суммы четных чисел от 1 до n включительно на 
+планете Фир называется фирским базисом.
+
+В свободное время начинающие математики планеты Фир 
+развлекаются тем, что считают фирские базисы для различных 
+чисел. Помоги им, напиши программу, которая бы проверяла 
+их рассчеты.
+
+Задание
+
+Создай класс FirNumBasis, который наследуется от 
+класса FirNum. Переопредели у этого класса метод calc() так, 
+чтобы он возвращал фирский базис числа n включительно 
+согласно алгоритму, описанному в теории.
+___________________________________________________________
+
+class FirTest {
+    public int test(FirNum firNum, int number) {
+        return firNum.calc(number);
+    }
+
+    public static void main(String[] args) {
+        FirNum firNum = new FirNumBasis();
+        FirTest firTest = new FirTest();
+
+        //Should be 20
+        System.out.println(firTest.test(firNum, 9));
+    }
+}
+
+class FirNum {
+    public int calc(int n) {
+        return n;
+    }
+}
+
+class FirNumSum extends FirNum {
+    @Override
+    public int calc(int n) {
+        int sum = 0;
+        for(int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        return sum;
+    }
+}
+
+class FirNumFactorial extends FirNum {
+    @Override
+    public int calc(int n) {
+        int result = 1;
+        for(int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+}
+
+class FirNumMultiplyOdd extends FirNum {
+    @Override
+    public int calc(int n) {
+        int result = 1;
+        for(int i = 1; i <= n; i++) {
+            if (i%2 != 0) {
+                result *= i;
+            }
+        }
+        return result;
+    }
+}
+
+class FirNumFizzBuzz extends FirNum {
+    @Override
+    public int calc(int n) {
+        int result = 0;
+        for(int i = 1; i <= n; i++) {
+            if ((i % 3 == 0 || i % 5 == 0) && !(i % 15 == 0)) {
+                result += i;
+            }
+        }
+        return result;
+    }
+}
+
+class FirNumBasis extends FirNum {
+    @Override
+    public int calc(int n) {
+        int sumEven = 0;
+        for(int i = 1; i <= n; i++) {
+            if (i % 2 == 0) {
+                sumEven = sumEven + i;
+            }
+        }
+        return sumEven/2;
+    }
+}
+___________________________________________________________________
+
+32.
+На планете Фир нет времен года. Здесь постоянно что-то похожее 
+на весну, не бывает очень холодно или очень жарко.
+
+Ты рассказал местным жителям, что на Земле все иначе. Есть лето, 
+осень, зима и весна. Каждый сезон разный.
+
+Тебя попросили написать небольшую программу, иллюстрирующую твои 
+слова. На планете Фир программируют с младых лет, и код в виде 
+Java-программы понятней местному населению, чем твой рассказ.
+
+Задание
+
+Уже есть написанный абстрактный класс Season, который представляет
+ определенный сезон года. Также есть класс SeasonTest, с помощью 
+которого можно вывести информацию о сезоне.
+
+Напиши следующие классы, которые наследуются от класса Season:
+
+    класс Winter, у которого метод getName() возвращает "winter", метод isCold() возвращает true;
+    класс Spring, у которого метод getName() возвращает "spring", метод isCold() возвращает false;
+    класс Summer, у которого метод getName() возвращает "summer", метод isCold() возвращает false;
+    класс Autumn, у которого метод getName() возвращает "autumn", метод isCold() возвращает true.
+__________________________________________________________________________________________
+
+class SeasonTest {
+    public String test(Season season) {
+        return season.getName() + (season.isCold() ? " is cold" : " is warm");
+    }
+
+    public static void main(String[] args) {
+        SeasonTest seasonTest = new SeasonTest();
+
+        //Should be winter is cold
+        System.out.println(seasonTest.test(new Winter()));
+
+        //Should be spring is warm
+        System.out.println(seasonTest.test(new Spring()));
+
+        //Should be summer is warm
+        System.out.println(seasonTest.test(new Summer()));
+
+        //Should be autumn is cold
+        System.out.println(seasonTest.test(new Autumn()));
+    }
+}
+
+abstract class Season {
+    public abstract String getName();
+    public abstract boolean isCold();
+}
+
+class Winter extends Season {
+
+    @Override
+    public String getName() {
+        return "winter";
+    }
+
+    @Override
+    public boolean isCold() {
+        return true;
+    }
+}
+
+class Spring extends Season {
+
+    @Override
+    public String getName() {
+        return "spring";
+    }
+
+    @Override
+    public boolean isCold() {
+        return false;
+    }
+}
+
+class Summer extends Season {
+
+    @Override
+    public String getName() {
+        return "summer";
+    }
+
+    @Override
+    public boolean isCold() {
+        return false;
+    }
+}
+
+class Autumn extends Season {
+
+    @Override
+    public String getName() {
+        return "autumn";
+    }
+
+    @Override
+    public boolean isCold() {
+        return true;
+    }
+}
+_________________________________________________
+
+33.
+Напиши класс Spaceport - это будет основа.
+ У этого класса опиши метод public void launch(), 
+который не делает ничего. Это заглушка, 
+дальше этот код будем расширять.
+_________________________________________________
+
+class Launcher {
+    public static void main(String[] args) {
+        Spaceport spaceport = new Spaceport();
+        spaceport.launch();
+    }
+}
+class Spaceport {
+    public void launch() {
+    }
+}
+_________________________________________________
+
+34.
+Опиши класс GasStation. В этом классе напиши 
+метод public void refuel(). Этот метод должен 
+выводить в консоль текст "Refuel done!".
+
+Добавь в класс Spaceport приватное поле типа 
+GasStation, назови его gasStation. Сразу проинициализируй 
+это поле (используй выражение new GasStation()).
+
+Добавь в метод launch() класса Spaceport вызов метода 
+refuel() поля gasStation.
+______________________________________________________
+
+class Launcher {
+    public static void main(String[] args) {
+        Spaceport spaceport = new Spaceport();
+        spaceport.launch();
+    }
+}
+
+class Spaceport {
+    private GasStation gasStation = new GasStation();
+    public void launch() {
+        gasStation.refuel();
+    }
+}
+class GasStation {
+    public void refuel(){
+        System.out.println("Refuel done!");
+    }
+}
+____________________________________________________
+
+35.
+Опиши класс ServiceTower. В этом классе напиши метод 
+public void service(). Этот метод должен выводить в 
+консоль текст "Service done!".
+
+Добавь в класс Spaceport приватное поле типа ServiceTower, 
+назови его serviceTower. Сразу проинициализируй это поле 
+(используй выражение new ServiceTower()).
+
+Добавь в метод launch() класса Spaceport вызов метода 
+service() поля serviceTower.
+______________________________________________________
+
+class Launcher {
+    public static void main(String[] args) {
+        Spaceport spaceport = new Spaceport();
+        spaceport.launch();
+    }
+}
+
+class Spaceport {
+    private GasStation gasStation = new GasStation();
+    private ServiceTower serviceTower = new ServiceTower();
+    public void launch() {
+        gasStation.refuel();
+        serviceTower.service();
+    }
+}
+
+class GasStation {
+    public void refuel() {
+        System.out.println("Refuel done!");
+    }
+}
+
+class ServiceTower {
+    public void service(){
+        System.out.println("Service done!");
+    }
+}
+________________________________________________________________
+
+36.
+Опиши класс CompressorStation. В этом классе напиши метод 
+public void compress(). Этот метод должен выводить в консоль 
+текст "Compress done!".
+
+Добавь в класс Spaceport приватное поле типа CompressorStation, 
+назови его compressorStation. Сразу проинициализируй это поле 
+(используй выражение new CompressorStation()).
+
+Добавь в метод launch() класса Spaceport вызов метода 
+compress() поля compressorStation.
+______________________________________________________________
+class Launcher {
+    public static void main(String[] args) {
+        Spaceport spaceport = new Spaceport();
+        spaceport.launch();
+    }
+}
+
+class Spaceport {
+    private GasStation gasStation = new GasStation();
+    private ServiceTower serviceTower = new ServiceTower();
+    private CompressorStation compressorStation = new CompressorStation();
+    public void launch() {
+        gasStation.refuel();
+        serviceTower.service();
+        compressorStation.compress();
+    }
+}
+
+class GasStation {
+    public void refuel() {
+        System.out.println("Refuel done!");
+    }
+}
+
+class ServiceTower {
+    public void service() {
+        System.out.println("Service done!");
+    }
+}
+class CompressorStation {
+    public void compress(){
+        System.out.println("Compress done!");
+    }
+}
+_________________________________________________
+37.
+Опиши класс Radar. В этом классе напиши метод 
+public void scan(). Этот метод должен выводить 
+в консоль текст "Scan done!".
+
+Добавь в класс Spaceport приватное поле типа Radar, 
+назови его radar. Сразу проинициализируй это поле.
+
+Добавь в метод launch() класса Spaceport вызов 
+метода scan() поля radar.
+_________________________________________________
+class Launcher {
+    public static void main(String[] args) {
+        Spaceport spaceport = new Spaceport();
+        spaceport.launch();
+    }
+}
+
+class Spaceport {
+    private GasStation gasStation = new GasStation();
+    private ServiceTower serviceTower = new ServiceTower();
+    private CompressorStation compressorStation = new CompressorStation();
+    private Radar radar = new Radar();
+    public void launch() {
+        gasStation.refuel();
+        serviceTower.service();
+        compressorStation.compress();
+        radar.scan();
+    }
+}
+
+class GasStation {
+    public void refuel() {
+        System.out.println("Refuel done!");
+    }
+}
+
+class ServiceTower {
+    public void service() {
+        System.out.println("Service done!");
+    }
+}
+
+class CompressorStation {
+    public void compress() {
+        System.out.println("Compress done!");
+    }
+}
+class Radar {
+    public void scan(){
+        System.out.println("Scan done!");
+    }
+}
+_______________________________________________
+38.
+Опиши класс CommandPost. В этом классе напиши 
+метод public void command(). Этот метод должен 
+выводить в консоль текст "Fire!".
+
+Добавь в класс Spaceport приватное поле типа 
+CommandPost, назови его commandPost. 
+Сразу проинициализируй это поле.
+
+Добавь в метод launch() класса Spaceport 
+вызов метода command() поля commandPost.
+________________________________________________
+class Launcher {
+    public static void main(String[] args) {
+        Spaceport spaceport = new Spaceport();
+        spaceport.launch();
+    }
+}
+
+class Spaceport {
+    private GasStation gasStation = new GasStation();
+    private ServiceTower serviceTower = new ServiceTower();
+    private CompressorStation compressorStation = new CompressorStation();
+    private Radar radar = new Radar();
+    private CommandPost commandPost = new CommandPost();
+    public void launch() {
+        gasStation.refuel();
+        serviceTower.service();
+        compressorStation.compress();
+        radar.scan();
+        commandPost.command();
+    }
+}
+
+class GasStation {
+    public void refuel() {
+        System.out.println("Refuel done!");
+    }
+}
+
+class ServiceTower {
+    public void service() {
+        System.out.println("Service done!");
+    }
+}
+
+class CompressorStation {
+    public void compress() {
+        System.out.println("Compress done!");
+    }
+}
+
+class Radar {
+    public void scan() {
+        System.out.println("Scan done!");
+    }
+}
+class CommandPost {
+    public void command(){
+        System.out.println("Fire!");
+    }
+}
+____________________________________________
+39.
+Объяви класс для измерения высоты, назови его Altimeter. 
+Переопредели у этого класса метод toString(), 
+чтобы он возвращал текст "Measure height".
+
+Объяви класс для измерения давления атмосферы, 
+назови его AirGauge. Переопредели у этого класса 
+метод toString(), чтобы он возвращал текст 
+"Measure air pressure".
+
+Объяви класс ControlPanel. У этого класса объяви 
+следующие приватные поля:
+
+    поле с именем altimeter типа Altimeter;
+    поле с именем airGauge типа AirGauge;
+
+Сразу проиницализируй эти поля при объявлении.
+
+Создай метод public void control() у класса ControlPanel. 
+Он должен выводить в консоль поля altimeter и airGauge.
+
+Запусти программу, и убедись, что исполнение метода main() 
+у класса ControlPanelTest выводит в консоль правильный 
+результат.
+____________________________________________________________
+
+class ControlPanelTest {
+    public static void main(String[] args) {
+        ControlPanel controlPanel = new ControlPanel();
+        controlPanel.control();
+    }
+}
+class ControlPanel{
+    private Altimeter altimeter = new Altimeter();
+    private AirGauge airGauge = new AirGauge();
+    public void control(){
+        altimeter.toString();
+        airGauge.toString();
+    }
+}
+class Altimeter {
+    @Override
+    public String toString() {
+        System.out.println("Measure height");
+        return null;
+    }
+}
+class AirGauge{
+    @Override
+    public String toString() {
+        System.out.println("Measure air pressure");
+        return null;
+    }
+}
+________________________________________________________
+
+
+
+
+
