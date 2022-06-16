@@ -6,31 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="04b43f89-6729-4261-ae70-38feffdd5de4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/HM5/TargetFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HM5/TargetFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/BrokenKeyboardCalculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Conversion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Counter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/HomeWorkMod2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MarsCalculatorFinal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MathTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MathUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MathUtils1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MathUtils2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NumberTester.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NumberTester1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Operations.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Operations2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ProfShop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ProfessorHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ProfessorHelper1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ProfessorHelper2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ProfessorHelper3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Questions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ScoreCounter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ScoreCounter1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SecondModulePart1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TypeTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VarTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +58,33 @@
       <recent name="HW4" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LevelTest">
+  <component name="RunManager" selected="Application.ArrayWorkerTest">
+    <configuration name="ArrayWorkerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HM5.ArrayWorkerTest" />
+      <module name="SecondModulePart1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="HM5.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LevelLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HM5.LevelLoaderTest" />
+      <module name="SecondModulePart1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="HM5.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LevelTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HM5.LevelTest" />
       <module name="SecondModulePart1" />
@@ -111,39 +112,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PassportFormCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HW3.PassportFormCreator" />
-      <module name="SecondModulePart1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="HW3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TargetFinderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HM5.TargetFinderTest" />
-      <module name="SecondModulePart1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="HM5.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ArrayWorkerTest" />
+        <item itemvalue="Application.LevelLoaderTest" />
         <item itemvalue="Application.LevelTest" />
         <item itemvalue="Application.MathUtils11" />
         <item itemvalue="Application.MathUtils" />
-        <item itemvalue="Application.PassportFormCreator" />
-        <item itemvalue="Application.TargetFinderTest" />
       </list>
     </recent_temporary>
   </component>
