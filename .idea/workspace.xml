@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04b43f89-6729-4261-ae70-38feffdd5de4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/HWModul5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/HWModul5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Conversion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/HM5/TargetFinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HM5/TargetFinderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/HomeWorkMod2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MathTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MathUtils11.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Questions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SecondModulePart1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StringTest2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TypeTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VarTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/empty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/experement2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/task22hm3.java" beforeDir="false" />
-    </list>
+    <list default="true" id="04b43f89-6729-4261-ae70-38feffdd5de4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
