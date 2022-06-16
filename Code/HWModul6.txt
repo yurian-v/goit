@@ -1,0 +1,938 @@
+1.
+import java.io.StringWriter;
+
+class GooQueryTest {
+    public static void main(String[] args) {
+        GooQuery query = new GooQuery("en", "capital");
+
+        //en
+        System.out.println(query.getLanguage());
+
+        //capital
+        System.out.println(query.getText());
+
+        //Searching [capital], using language: en
+        System.out.println(query);
+    }
+}
+
+class GooQuery{
+    private String language;
+    private String text;
+
+    public GooQuery(String language, String text) {
+        this.language = language;
+        this.text = text;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    @Override
+    public String toString() {
+        return "Searching ["+this.text+"], using language: "+this.language;
+    }
+}
+__________________________________________________________________
+2.
+import java.io.StringWriter;
+
+class GooWordStatTest {
+    public static void main(String[] args) {
+        //Word is [human], search freq is LOW
+        System.out.println(new GooWordStat("human", 10));
+
+        //Word is [mars], search freq is MEDIUM
+        System.out.println(new GooWordStat("mars", 10000));
+
+        //Word is [space], search freq is HIGH
+        System.out.println(new GooWordStat("space", 9965499));
+
+        //Word is [life], search freq is EXTRA HIGH
+        System.out.println(new GooWordStat("life", 564785654));
+    }
+}
+
+class GooWordStat{
+    private String word = "";
+    private int freq = 0;
+    public GooWordStat(String word, int freq) {
+        this.word = word;
+        this.freq = freq;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public int getFreq() {
+        return freq;
+    }
+
+    @Override
+    public String toString() {
+        if (this.freq < 1000){
+            return "Word is ["+this.word+"], search freq is LOW";
+        } else if (this.freq >= 1000000) {
+            return "Word is ["+this.word+"], search freq is EXTRA HIGH";
+        } else if (this.freq >= 100000) {
+            return "Word is ["+this.word+"], search freq is HIGH";
+        } else {
+            return "Word is ["+this.word+"], search freq is MEDIUM";
+        }
+    }
+}
+__________________________________________________________________
+3.
+import java.net.MalformedURLException;
+import java.net.URL;
+
+class GooSearchResultTest {
+    public static void main(String[] args) {
+        //test.com
+        System.out.println(new GooSearchResult("https://test.com").parseDomain());
+
+        //apple.in.mars
+        System.out.println(new GooSearchResult("http://apple.in.mars").parseDomain());
+    }
+}
+
+class GooSearchResult{
+    private String url = "";
+
+    GooSearchResult(String url){
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    String parseDomain(){
+        try{
+            URL url = new URL(this.url);
+            return url.getHost();
+        }catch (MalformedURLException e){
+            return "MalformedURLException";
+        }
+    }
+}
+__________________________________________________________________
+4.
+import java.util.Arrays;
+
+class PhraseTest {
+    public static void main(String[] args) {
+        String[] words = {"alpha", "beta", "gamma"};
+
+        Phrase phrase = new Phrase(words);
+
+        //alpha beta gamma
+        System.out.println(phrase);
+
+        words[0] = "zero";
+
+        //alpha beta gamma
+        System.out.println(phrase);
+    }
+}
+
+class Phrase{
+    private String[] words;
+    public Phrase(String[] words) {
+        this.words = Arrays.copyOf(words, words.length);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder temp = new StringBuilder();
+        for (String word: this.words) {
+            temp.append(word).append(" ");
+        }
+        return temp.toString().trim();
+    }
+}
+__________________________________________________________________
+5.
+import java.util.Arrays;
+import java.util.Locale;
+
+class WordSplitterTest {
+    public static void main(String[] args) {
+        WordSplitter wordSplitter = new WordSplitter();
+
+        String[] words = wordSplitter.split("Hello      world");
+
+        //[hello, world]
+        System.out.println(Arrays.toString(words));
+    }
+}
+
+class WordSplitter{
+    public String[] split(String phrase){
+        String [] rawWords = phrase.split("\\s+");
+        int wordsCount = 0;
+        for (String word: rawWords) {
+            if (word.length() != 0){
+                rawWords[wordsCount] = word.toLowerCase();
+                wordsCount++;
+            }
+        }
+        return Arrays.copyOf(rawWords, rawWords.length);
+    }
+}
+__________________________________________________________________
+6.
+class PunctuationMarkCounterTest {
+    public static void main(String[] args) {
+        PunctuationMarkCounter counter = new PunctuationMarkCounter();
+        //2
+        System.out.println(counter.count("Hello, world!"));
+        //1
+        System.out.println(counter.count("This is Sparta!"));
+        //1
+        System.out.println(counter.count("End."));
+    }
+}
+
+class PunctuationMarkCounter{
+    public int count(String phrase){
+        char [] marks = new char[]{'.', ',', '!', ':', ';'};
+        char [] symbolsFromPhrase = phrase.toCharArray();
+        int markCount = 0;
+        for (char mark : marks) {
+            for (char symbol: symbolsFromPhrase) {
+                if(mark == symbol){
+                    markCount++;
+                }
+            }
+        }
+        return markCount;
+    }
+}
+__________________________________________________________________
+7.
+import java.util.Arrays;
+
+class DoubleSpaceCleanerTest {
+    public static void main(String[] args) {
+        DoubleSpaceCleaner cleaner = new DoubleSpaceCleaner();
+
+        //Hello World
+        System.out.println(cleaner.clean("Hello World"));
+
+        //Hello World
+        System.out.println(cleaner.clean("       Hello              World          "));
+    }
+}
+
+class DoubleSpaceCleaner{
+    public String clean(String phrase){
+        String []words = phrase.split("\\s+");
+        StringBuilder trimmedPhrase = new StringBuilder();
+        for (String word : words) {
+            trimmedPhrase.append(word.trim()).append(" ");
+        }
+        return trimmedPhrase.toString().trim();
+    }
+}
+__________________________________________________________________
+8.
+class WordFreqCounterTest {
+    public static void main(String[] args) {
+        WordFreqCounter freqCounter = new WordFreqCounter();
+        //0.5
+        System.out.println(freqCounter.countFreq("Hello Java", "java"));
+        //0
+        System.out.println(freqCounter.countFreq("Hello World", "java"));
+    }
+}
+
+class WordFreqCounter{
+    public float countFreq(String phrase, String word){
+        String [] words = phrase.split(" ");
+        int wordCount = words.length;
+        int count = 0;
+        for (String wrd: words) {
+            if(wrd.equalsIgnoreCase(word)){
+                count++;
+            }
+        }
+        return (float)count / (float)wordCount;
+    }
+}
+__________________________________________________________________
+9.
+import java.util.Locale;
+
+class StringByteWorkerTest {
+    public static void main(String[] args) {
+        byte[] startBytes = {74, 97, 86, 97};
+        //java
+        System.out.println(new StringByteWorker().process(startBytes));
+    }
+}
+
+class StringByteWorker{
+    public String process(byte[] bytes){
+        String str = new String(bytes);
+        return str.toLowerCase();
+    }
+}
+__________________________________________________________________
+10.
+class ShortWordCounterTest {
+    public static void main(String[] args) {
+        //1
+        System.out.println(new ShortWordCounter().count("Java is great language", 2));
+
+        //2
+        System.out.println(new ShortWordCounter().count("Java is great language", 4));
+
+        //3
+        System.out.println(new ShortWordCounter().count("Java is great language", 5));
+
+        //4
+        System.out.println(new ShortWordCounter().count("Java is great language", 100));
+    }
+}
+
+class ShortWordCounter{
+    public int count(String phrase, int minLength){
+        String [] words = phrase.split(" ");
+        int wordsCount = 0;
+        for (String word: words) {
+            if(word.length() <= minLength){
+                wordsCount++;
+            }
+        }
+        return wordsCount;
+    }
+}
+__________________________________________________________________
+11.
+class PalindromeCounterTest {
+    public static void main(String[] args) {
+        PalindromeCounter counter = new PalindromeCounter();
+
+        //1
+        System.out.println(counter.count("Level done!"));
+
+        //0
+        System.out.println(counter.count("No palindromes"));
+    }
+}
+
+class PalindromeCounter{
+    public int count(String phrase){
+        String [] words = phrase.split(" ");
+        int palindromeCounter = 0;
+        for (String word: words) {
+            if(this.isPalindrome(word.toLowerCase())){
+                palindromeCounter++;
+            }
+        }
+        return palindromeCounter;
+    }
+    private boolean isPalindrome(String word){
+        char [] letters = word.toCharArray();
+        int lastIndex = word.length()-1;
+        int iterationsCount = lastIndex / 2;
+        for (int i = 0, j = lastIndex; i <= iterationsCount; i++, j--) {
+            if(letters[i] != letters[j]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+__________________________________________________________________
+12.
+import java.util.Arrays;
+
+class UniqueCharCounterTest {
+    public static void main(String[] args) {
+        UniqueCharCounter charCounter = new UniqueCharCounter();
+
+        //3
+        System.out.println(charCounter.count("123"));
+
+        //4
+        System.out.println(charCounter.count("ab100"));
+
+        //3
+        System.out.println(charCounter.count("Java"));
+    }
+}
+
+class UniqueCharCounter{
+    public int count(String phrase){
+        int [] intArray = convertPhraseToSortedIntArray(phrase);
+        int arrLen = intArray.length;
+        int unicCount = arrLen;
+        int currentNum = intArray[0];
+        for (int i = 1; i < arrLen; i++) {
+            if(currentNum == intArray[i]){
+                unicCount--;
+                continue;
+            }
+            currentNum = intArray[i];
+        }
+        return unicCount;
+    }
+    private int[] convertPhraseToSortedIntArray(String phrase){
+        char [] letters = phrase.toCharArray();
+        int arrLen = letters.length;
+        int [] intArr = new int [letters.length];
+        for (int i = 0; i < arrLen; i++) {
+            intArr[i] = letters[i];
+        }
+        Arrays.sort(intArr);
+        return intArr;
+    }
+}
+__________________________________________________________________
+13.
+class WordDeleterTest {
+    public static void main(String[] args) {
+        WordDeleter wordDeleter = new WordDeleter();
+
+        //Hello
+        System.out.println(wordDeleter.remove("tyxixuy sydiesu coe lutoekj tyxixuy zyryzai", new String[] {"coe"}));
+
+        //This Sparta
+        System.out.println(wordDeleter.remove("This is Sparta", new String[] {"is"}));
+    }
+}
+
+class WordDeleter{
+    public String remove(String phrase, String[] words){
+        String [] wordsFromPhrase = phrase.split(" ");
+        int phraseArrLen = wordsFromPhrase.length;
+        int wordsArrLen = words.length;
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < phraseArrLen; i++) {
+            for (int j = 0; j < wordsArrLen; j++) {
+                if (wordsFromPhrase[i].equals(words[j])){
+                    wordsFromPhrase[i] = " ";
+                }
+            }
+            result.append(wordsFromPhrase[i]).append(" ");
+        }
+        return this.clean(result.toString());
+    }
+
+    public String clean(String phrase){
+        String []words = phrase.split("\\s+");
+        StringBuilder trimmedPhrase = new StringBuilder();
+        for (String word : words) {
+            trimmedPhrase.append(word.trim()).append(" ");
+        }
+        return trimmedPhrase.toString().trim();
+    }
+}
+__________________________________________________________________
+14.
+class SensitiveDataSearcherTest {
+    public static void main(String[] args) {
+        SensitiveDataSearcher searcher = new SensitiveDataSearcher();
+
+        //false
+        System.out.println(searcher.isSensitiveDataPresent("Hello world"));
+
+        //true
+        System.out.println(searcher.isSensitiveDataPresent("Pass: swordfish"));
+    }
+}
+
+class SensitiveDataSearcher{
+    public boolean isSensitiveDataPresent(String phrase){
+        phrase = phrase.toLowerCase();
+        String [] sensitiveLib = new String []{"pass", "key", "login", "email"};
+        for (String word: sensitiveLib) {
+            if(phrase.contains(word)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+__________________________________________________________________
+15.
+class DigitTextTest {
+    public static void main(String[] args) {
+        //true
+        System.out.println(new DigitText().detect("23 50"));
+
+        //false
+        System.out.println(new DigitText().detect("Year 1990"));
+    }
+}
+
+class DigitText{
+    public boolean detect(String text){
+        String [] isNumsArr = text.split(" ");
+        for (String item: isNumsArr) {
+            try{
+                Integer.parseInt(item);
+            }catch (NumberFormatException e){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+__________________________________________________________________
+16.
+class SummaryCreatorTest {
+    public static void main(String[] args) {
+        SummaryCreator summaryCreator = new SummaryCreator();
+
+        //Mars
+        String shortPhrase = "Mars";
+        System.out.println(summaryCreator.create(shortPhrase));
+
+        //Java is very po...
+        String longPhrase = "Java is very popular language";
+        System.out.println(summaryCreator.create(longPhrase));
+    }
+}
+
+class SummaryCreator{
+    public String create(String text){
+        int textLen = text.length();
+        if (textLen <= 15){
+            return text;
+        }
+        boolean is16SymbIsSpase = text.charAt(15) == ' ';
+        return is16SymbIsSpase ? text.substring(0, 15) : text.substring(0, 15)+"...";
+    }
+}
+__________________________________________________________________
+17.
+class MathDetectorTest {
+    public static void main(String[] args) {
+        //true
+        System.out.println(new MathDetector().isMath("2+2=4"));
+
+        //false
+        System.out.println(new MathDetector().isMath("1992 is great year"));
+
+        //false
+        System.out.println(new MathDetector().isMath("Venus vs Earth"));
+    }
+}
+
+class MathDetector{
+    public boolean isMath(String text){
+        if(text.contains("=")){
+            char [] mathOperators = new char[]{'+', '-', '*', '/'};
+            if(isContainsMathOperator(text.replace('=', ' '), mathOperators)){
+                String textWithoutMath = clearFromMathOperations(text.replace('=', ' '), mathOperators);
+                if(isContainsTwoNums(textWithoutMath)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private boolean isContainsMathOperator(String text, char[] mathOperators){
+        int textLength = text.length();
+        for (int i = 0; i < textLength; i++) {
+            for (char operator: mathOperators) {
+                if(operator == text.charAt(i)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private String clearFromMathOperations(String text, char[] mathOperators){
+        String res = text;
+        for (char operator: mathOperators) {
+            res = res.replace(operator, ' ');
+        }
+        return res;
+    }
+    private boolean isContainsTwoNums (String textWithoutMath){
+        String [] splittedText = textWithoutMath.split(" ");
+        int numCounter = 0;
+        for (String element: splittedText) {
+            try{
+                Integer.parseInt(element.trim());
+                numCounter++;
+            }catch(NumberFormatException ignored){}
+        }
+        return numCounter > 1;
+    }
+}
+__________________________________________________________________
+18.
+class AvgWordLengthTest {
+    public static void main(String[] args) {
+        //6
+        System.out.println(new AvgWordLength().count("Launch Rocket"));
+
+        //4.5
+        System.out.println(new AvgWordLength().count("Life is strange thing"));
+    }
+}
+
+class AvgWordLength{
+    public double count(String phrase){
+        String [] words = phrase.split(" ");
+        int wordsCount = words.length;
+        int totalLetters = 0;
+        for (String word: words) {
+            totalLetters += word.length();
+        }
+        return (double)totalLetters / (double)wordsCount;
+    }
+}
+__________________________________________________________________
+19.
+import java.util.Arrays;
+
+class DigitExtracterTest {
+    public static void main(String[] args) {
+        DigitExtracter digitExtracter = new DigitExtracter();
+
+        int[] extracted = digitExtracter.extract("april 5, year 2000");
+
+        //[5, 2, 0, 0, 0]
+        System.out.println(Arrays.toString(extracted));
+    }
+}
+
+class DigitExtracter{
+    public int[] extract(String text){
+        String strNums = this.getAllNumbersFromString(text);
+        return this.convertStringNumbersToIntArr(strNums);
+    }
+    private boolean isNum(char symbol){
+        try{
+            Integer.parseInt(String.valueOf(symbol));
+            return true;
+        }catch (NumberFormatException ignored){
+            return false;
+        }
+    }
+
+    private String getAllNumbersFromString (String text){
+        char [] arrTextSymbols = text.toCharArray();
+        String strNums = "";
+        for (char symbol: arrTextSymbols) {
+            if(this.isNum(symbol)){
+                strNums += symbol;
+            }
+        }
+        return strNums;
+    }
+
+    private int [] convertStringNumbersToIntArr(String strNums){
+        char [] arrStrNums = strNums.toCharArray();
+        int [] intArrNums = new int[arrStrNums.length];
+        for (int i = 0; i < arrStrNums.length; i++) {
+            intArrNums[i] = Integer.parseInt(Character.toString(arrStrNums[i]));
+        }
+        return intArrNums;
+    }
+}
+__________________________________________________________________
+20.
+class BigOrSmallTest {
+    public static void main(String[] args) {
+        //Small
+        System.out.println(new BigOrSmall().calculate("Java"));
+
+        //Big
+        System.out.println(new BigOrSmall().calculate("JAVA"));
+
+        //Same
+        System.out.println(new BigOrSmall().calculate("jAvA"));
+    }
+}
+
+class BigOrSmall{
+    public String calculate(String text){
+        char [] charsFromText = text.toCharArray();
+        int upperCaseCounter = 0;
+        for (char letter: charsFromText) {
+            if(Character.isUpperCase(letter)){
+                upperCaseCounter++;
+            }
+        }
+        return this.bigSmallSame(charsFromText.length, upperCaseCounter);
+    }
+
+    private String bigSmallSame(int textLength, int upperCaseCounter){
+        float res = (float)textLength / (float)upperCaseCounter;
+        if(res == 2){
+            return "Same";
+        }else if(res > 2){
+            return "Small";
+        }else{
+            return "Big";
+        }
+    }
+}
+__________________________________________________________________
+21.
+import java.util.Arrays;
+
+class WordCombineTest {
+    public static void main(String[] args) {
+        //true
+        System.out.println(new WordCombine().canCombine("Forest", "tor"));
+
+        //true
+        System.out.println(new WordCombine().canCombine("Magic", "Mama"));
+
+        //false
+        System.out.println(new WordCombine().canCombine("War", "Piece"));
+    }
+}
+
+class WordCombine{
+    public boolean canCombine(String sourceWord, String targetWord){
+        char[] sourceWordArr = sourceWord.toLowerCase().toCharArray();
+        char[] targetWordArr = targetWord.toLowerCase().toCharArray();
+        int concurrenceCount = 0;
+        for (char targetLetter: targetWordArr) {
+            for (char sourceLetter: sourceWordArr) {
+                if(sourceLetter == targetLetter){
+                    concurrenceCount++;
+                    break;
+                }
+            }
+        }
+        return concurrenceCount == targetWordArr.length;
+    }
+}
+__________________________________________________________________
+22.
+class WaterCounterTest {
+    public static void main(String[] args) {
+        //0.07692307692307693
+        System.out.println(new WaterCounter().count("Moon invaders"));
+
+        //0
+        System.out.println(new WaterCounter().count("NoWater"));
+    }
+}
+
+class WaterCounter{
+    public double count(String text){
+        char [] symbols = text.toCharArray();
+        int spaceCounter = 0;
+        for (char symbol:symbols) {
+            if (symbol == ' '){
+                spaceCounter++;
+            }
+        }
+        return (double)spaceCounter / (double)symbols.length;
+    }
+}
+__________________________________________________________________
+23.
+class EmailDetectorTest {
+    public static void main(String[] args) {
+        //true
+        System.out.println(new EmailDetector().isPresent("This email is no-reply@goo.com"));
+
+        //false
+        System.out.println(new EmailDetector().isPresent("No email present, but @ there"));
+        System.out.println(new EmailDetector().isPresent("No email present, but ther@e"));
+    }
+}
+
+class EmailDetector{
+    public boolean isPresent(String text){
+        if(!text.contains("@")){
+            return false;
+        }
+        if(text.startsWith("@") || text.endsWith("@")){
+            return false;
+        }
+        int atIndex = text.indexOf('@');
+        try{
+            boolean isLeftSymbols = (text.charAt(atIndex-1) != ' ') && (text.charAt(atIndex-2) != ' ');
+            boolean isRightSymbols = (text.charAt(atIndex+1) != ' ') && (text.charAt(atIndex+2) != ' ');
+            if(!isLeftSymbols || !isRightSymbols){
+                return false;
+            }
+        }catch (StringIndexOutOfBoundsException e){
+            return false;
+        }
+        return true;
+    }
+}
+__________________________________________________________________
+24.
+class NameCounterTest {
+    public static void main(String[] args) {
+        //1
+        System.out.println(new NameCounter().count("Mars is great planet"));
+
+        //2
+        System.out.println(new NameCounter().count("Moon is near Earth"));
+
+        //0
+        System.out.println(new NameCounter().count("SPACE IS GREAT"));
+    }
+}
+
+class NameCounter{
+    public int count(String text){
+        String [] words = text.split(" ");
+        int nameCounter = 0;
+        for (String word: words) {
+            if(this.isName(word)){
+                nameCounter++;
+            }
+        }
+        return nameCounter;
+    }
+
+    private boolean isName(String word){
+        if(word.length() >= 2 && Character.isUpperCase(word.charAt(0))){
+            char [] letters = word.toCharArray();
+            for (int i = 1; i < letters.length; i++) {
+                if(!Character.isUpperCase(letters[i])){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+__________________________________________________________________
+25.
+class NumberJoiner {
+    public String join(int[] numbers) {
+        StringBuilder result = new StringBuilder();
+        for(int number: numbers) {
+            result.append(number);
+        }
+        return result.toString();
+    }
+}
+
+class NumberJoinerTest {
+    public static void main(String[] args) {
+        //102030
+        System.out.println(new NumberJoiner().join(new int[] {10, 20, 30}));
+    }
+}
+__________________________________________________________________
+26.
+class PhraseMaker {
+    public String join(String[] words) {
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.length() <= 3) {
+                word = word.toUpperCase();
+            } else {
+                word = word.toLowerCase();
+            }
+
+            result.append(word);
+            if (i != words.length - 1) {
+                result.append(" ");
+            }
+        }
+        return result.toString();
+    }
+}
+
+class PhraseMakerTest {
+    public static void main(String[] args) {
+        String[] words = {"Life", "is", "great", "thing"};
+
+        //life IS great thing
+        System.out.println(new PhraseMaker().join(words));
+    }
+}
+__________________________________________________________________
+27.
+class PalindromeDetector {
+    public boolean isPalindrome(String word) {
+        return word.equalsIgnoreCase(reverse(word));
+    }
+
+    private String reverse(String word) {
+        StringBuilder result = new StringBuilder(word);
+        result.reverse();
+        return result.toString();
+    }
+}
+
+class PalindromeDetectorTest {
+    public static void main(String[] args) {
+        //false
+        System.out.println(new PalindromeDetector().isPalindrome("Java"));
+
+        //true
+        System.out.println(new PalindromeDetector().isPalindrome("Noon"));
+    }
+}
+__________________________________________________________________
+28.
+class ObjectWorker {
+    public String join(Object[] objects) {
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < objects.length; i++) {
+            result.append(objects[i]);
+
+            if (i != objects.length - 1) {
+                result.append(" ");
+            }
+        }
+
+        return result.toString();
+    }
+}
+
+class ObjectWorkerTest {
+    public static void main(String[] args) {
+        Object[] data = {"Hello", 20L, 3.14f, true};
+
+        //Hello 20 3.14 true
+        System.out.println(new ObjectWorker().join(data));
+    }
+}
+__________________________________________________________________
+29.
+class NameParser {
+    public String parse(String[] names) {
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < names.length; i++) {
+            String firstName = names[i].split(" ")[0];
+
+            result.append(firstName);
+            if (i != names.length - 1) {
+                result.append(", ");
+            }
+        }
+
+        return result.toString();
+    }
+}
+
+class NameParserTest {
+    public static void main(String[] args) {
+        String[] names = {"John Doe", "Bill Mask", "Nigua Joshua"};
+
+        //John, Bill, Nigua
+        System.out.println(new NameParser().parse(names));
+    }
+}
+__________________________________________________________________

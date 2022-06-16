@@ -630,3 +630,391 @@ public int[] findTarget(int[] aiCoords, int[][] targets).
 Метод возвращает точку ближайшей цели из массива targets. 
 Это массив из двух точек - x и y соответственно.
 __________________________________________________________________
+15.
+class TargetFinder{
+    public int[] findTarget(int[] aiCoords, int[][] targets){
+        int [] distances = new int[1];
+        double minDistance = this.getDistance(aiCoords[0], aiCoords[1], targets[0][0], targets[0][1]);
+        for (int[] target: targets) {
+            double temp = this.getDistance(aiCoords[0], aiCoords[1], target[0], target[1]);
+            if(temp < minDistance){
+                distances = target;
+                minDistance = temp;
+            }
+        }
+        return distances;
+    }
+
+    public double getDistance(int x1, int y1, int x2, int y2){
+        double intermediateResult = Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2);
+        return Math.sqrt(intermediateResult);
+    }
+}
+__________________________________________________________________
+16.
+class LevelTest {
+    public static void main(String[] args) {
+        //Quarke level, name is Test
+        System.out.println(new Level("Test"));
+    }
+}
+
+class Level{
+    String levelName = "";
+    Level(String levelName){
+        this.levelName = levelName;
+    }
+
+    @Override
+    public String toString() {
+        return "Quarke level, name is " + this.levelName;
+    }
+}
+__________________________________________________________________
+17.
+class Level {
+    private String name;
+    Point[] points;
+    Level(String name, Point[] points) {
+        this.name = name;
+        this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "Quarke level, name is " + this.name + ", point count is " + this.points.length;
+    }
+
+    static class Point{
+        int x = 0;
+        int y = 0;
+        Point[] points;
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+}
+
+class LevelTest {
+    public static void main(String[] args) {
+        Level.Point p1 = new Level.Point(3, 5);
+        Level.Point p2 = new Level.Point(10, 100);
+        Level.Point p3 = new Level.Point(50, 40);
+
+        Level.Point[] points = {p1, p2, p3};
+
+        //Quarke level, name is Test, point count is 3
+        System.out.println(new Level("Test", points));
+    }
+}
+__________________________________________________________________
+18.
+
+
+__________________________________________________________________
+19.
+
+__________________________________________________________________
+20.
+class GameMenuTest {
+    public static void main(String[] args) {
+        GameMenu menu = new GameMenu();
+
+        //options
+        menu.act(new GameMenu.Options());
+
+        //start
+        menu.act(new GameMenu.Start());
+
+        //exit
+        menu.act(new GameMenu.Exit());
+    }
+}
+
+class GameMenu{
+    void act(MenuItem item){
+        System.out.println(item.getAction());
+    }
+    static abstract class MenuItem{
+        abstract String getAction();
+    }
+    static class Start extends MenuItem{
+        @Override
+        String getAction() {
+            return "start";
+        }
+    }
+    static class Options extends MenuItem{
+        @Override
+        String getAction() {
+            return "options";
+        }
+    }
+    static class Exit extends MenuItem{
+        @Override
+        String getAction() {
+            return "exit";
+        }
+    }
+}
+__________________________________________________________________
+21.
+class LevelLoaderTest {
+    public static void main(String[] args) {
+        LevelLoader levelLoader = new LevelLoader();
+
+        //Loading level Startlevel ...
+        System.out.println(levelLoader.load("StartLevel"));
+    }
+}
+
+class LevelLoader {
+    String load(String levelName){
+        return "Loading level "+levelName+" ...";
+    }
+}
+__________________________________________________________________
+22.
+class LevelLoader {
+    private static LevelLoader instance = new LevelLoader();
+    public static LevelLoader getInstance(){
+        return instance;
+    }
+    public String load(String levelName) {
+        return "Loading level " + levelName + " ...";
+    }
+}
+
+class LevelLoaderTest {
+    public static void main(String[] args) {
+        //Loading level Startlevel ...
+        System.out.println(LevelLoader.getInstance().load("StartLevel"));
+    }
+}
+__________________________________________________________________
+23.
+class LevelLoader {
+    private static LevelLoader instance = new LevelLoader();
+
+    public static LevelLoader getInstance() {
+        return instance;
+    }
+
+    private LevelLoader(){};
+
+    public String load(String levelName) {
+        return "Loading level " + levelName + " ...";
+    }
+}
+
+class LevelLoaderTest {
+    public static void main(String[] args) {
+        //Loading level Startlevel ...
+        System.out.println(LevelLoader.getInstance().load("StartLevel"));
+    }
+}
+__________________________________________________________________
+24.
+class TexturePoolTest {
+    public static void main(String[] args) {
+        //Get texture MainHero
+        System.out.println(TexturePool.getInstance().getTexture("MainHero"));
+    }
+}
+
+class TexturePool{
+    private static final TexturePool instance = new TexturePool();
+    public String getTexture(String textureName){
+        return "Get texture " + textureName;
+    }
+    private TexturePool(){}
+
+    static TexturePool getInstance(){
+        return instance;
+    }
+}
+__________________________________________________________________
+25.
+class AvgDamageCalculator {
+    public int calculateAvg(int[] samples) {
+        int sum = 0;
+        for(int sampleValue: samples) {
+            sum += sampleValue;
+        }
+        try{
+            sum /= samples.length;
+        }catch(ArithmeticException e){
+//            System.out.println(e.getMessage());
+            return 0;
+        }
+        return sum;
+    }
+}
+
+class AvgDamageCalculatorTest {
+    public static void main(String[] args) {
+        //5
+        System.out.println(new AvgDamageCalculator().calculateAvg(new int[] {2, 4, 6, 8}));
+
+        //0
+        System.out.println(new AvgDamageCalculator().calculateAvg(new int[0]));
+    }
+}
+__________________________________________________________________
+26.
+class ArrayWorker {
+    public void printElement(int[] array, int index) {
+        try{
+            System.out.println("value is " + array[index]);
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("wrong index");
+        }finally {
+            System.out.println("index is " + index);
+        }
+    }
+}
+
+class ArrayWorkerTest {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3};
+
+        //value is 1
+        //index is 0
+        new ArrayWorker().printElement(array, 0);
+
+        //wrong index
+        //index is 10
+        new ArrayWorker().printElement(array, 10);
+    }
+}
+__________________________________________________________________
+27.
+class AIPlayer {
+    private int hp;
+
+    public void setHp(int hp) {
+        if(hp >= 0 && hp <= 100){
+            this.hp = hp;
+        }else{
+            throw new IllegalArgumentException();
+        }
+    }
+}
+
+class AIPlayerTest {
+    public static void main(String[] args) {
+        AIPlayer player = new AIPlayer();
+
+        //Ok value
+        try {
+            player.setHp(50);
+            System.out.println("Ok value");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid value");
+        }
+
+        //Invalid value
+        try {
+            player.setHp(-1);
+            System.out.println("Ok value");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid value");
+        }
+    }
+}
+__________________________________________________________________
+28.
+class TotalScore {
+    public int sum(int[] scores) {
+        int result = 0;
+//        int index = 0;
+//        while(true) {
+//            try {
+//                result += scores[index++];
+//            } catch (IndexOutOfBoundsException ex) {
+//                break;
+//            }
+//        }
+        for (int points: scores) {
+            result += points;
+        }
+
+
+        return result;
+    }
+}
+
+class TotalScoreTest {
+    public static void main(String[] args) {
+        int[] score = {10, 20, 100};
+
+        //130
+        System.out.println(new TotalScore().sum(score));
+    }
+}
+__________________________________________________________________
+29.
+import java.io.StringWriter;
+
+class Level {
+    private int width;
+    private int height;
+
+    public Level(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+}
+
+class LevelLoader {
+    public void load(Level level) throws LevelTooBigException {
+        if(level.getHeight() * level.getWidth() > 100000){
+            throw new LevelTooBigException();
+        }
+        System.out.println("Level loaded");
+    }
+}
+
+class LevelTooBigException extends Error{
+    void errMessage(String msg){
+        System.out.println(msg);
+    }
+}
+
+class LevelLoaderTest {
+    public static void main(String[] args) {
+        //Level loaded
+        try {
+            new LevelLoader().load(new Level(10, 20));
+        } catch (LevelTooBigException ex) {
+            ex.errMessage("Level too big");
+        }
+
+        //Level too big
+        try {
+            new LevelLoader().load(new Level(10000, 2000));
+        } catch (LevelTooBigException ex) {
+            ex.errMessage("Level too big");
+        }
+    }
+}
+__________________________________________________________________
+
+
