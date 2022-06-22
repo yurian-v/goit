@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="04b43f89-6729-4261-ae70-38feffdd5de4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/HWModul6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Code/HWModul6.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
       <recent name="HW4" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PhraseTest">
+  <component name="RunManager" selected="Application.WordSplitterTest">
     <configuration name="GooQueryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HW6.GooQueryTest" />
       <module name="SecondModulePart1" />
@@ -99,19 +98,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LevelLoaderTest29" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HM5.LevelLoaderTest29" />
-      <module name="SecondModulePart1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="HM5.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PhraseTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HW6.PhraseTest" />
       <module name="SecondModulePart1" />
@@ -125,13 +111,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WordSplitterTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HW6.WordSplitterTest" />
+      <module name="SecondModulePart1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="HW6.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WordSplitterTest" />
         <item itemvalue="Application.PhraseTest" />
         <item itemvalue="Application.GooSearchResultTest" />
         <item itemvalue="Application.GooWordStatTest" />
         <item itemvalue="Application.GooQueryTest" />
-        <item itemvalue="Application.LevelLoaderTest29" />
       </list>
     </recent_temporary>
   </component>
