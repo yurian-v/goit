@@ -652,6 +652,12 @@ class TargetFinder{
 }
 __________________________________________________________________
 16.
+Создай класс Level, у этого класса создай публичный конструктор, 
+принимающий строку - название уровня. Переопредели метод 
+toString() у класса Level так, чтобы он возвращал строку вида 
+Quarke level, name is <LEVEL_NAME>, где <LEVEL_NAME> - это 
+переданное в конструктор название уровня.
+__________________________________________________________________
 class LevelTest {
     public static void main(String[] args) {
         //Quarke level, name is Test
@@ -660,47 +666,62 @@ class LevelTest {
 }
 
 class Level{
-    String levelName = "";
-    Level(String levelName){
-        this.levelName = levelName;
+    String name = "";
+    Level(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Quarke level, name is " + this.levelName;
+        return "Quarke level, name is " + name;
     }
 }
 __________________________________________________________________
 17.
-class Level {
-    private String name;
-    Point[] points;
+В классе Level опиши статический внутренний класс с именем Point. 
+У этого класса должны быть два приватных поля типа int с именем
+ x и y. Для каждого поля создай публичный геттер. Также у этого 
+класса должен быть публичный конструктор, который принимает эти 
+два параметра.
+
+Добавь классу Level приватное поле Point[] points, и замени 
+конструктор Level(String name) на конструктор Level(String name, 
+Point[] points).
+
+Измени метод toString() у класса Level так, чтобы он возвращал 
+строку вида Quarke level, name is <LEVEL_NAME>, point count is 
+<POINT_COUNT>, где <LEVEL_NAME> - имя уровня, а <POINT_COUNT> 
+- количество точек.
+
+class Level{
+    private Point[] points;
+    String name = "";
     Level(String name, Point[] points) {
         this.name = name;
         this.points = points;
     }
 
-    @Override
-    public String toString() {
-        return "Quarke level, name is " + this.name + ", point count is " + this.points.length;
+static class Point{
+    private int x = 0;
+    private int y = 0;
+
+    public int getX() {
+        return x;
     }
 
-    static class Point{
-        int x = 0;
-        int y = 0;
-        Point[] points;
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
+    public int getY() {
+        return y;
+    }
 
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
+    private Point[] points;
+    public Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
+    @Override
+    public String toString() {
+        return "Quarke level, name is " + name + ", point count is " + points.length;
     }
 }
 
@@ -718,13 +739,194 @@ class LevelTest {
 }
 __________________________________________________________________
 18.
+В классе Level опиши статический внутренний класс с именем 
+LevelInfo.
 
+У класса LevelInfo должны быть два приватных поля типа String с 
+именами name и difficulty - имя и сложность уровня соответственно. 
+Для этих полей объяви публичные геттеры. Также создай публичный 
+конструктор LevelInfo(String name, String difficulty), в котором 
+ты задашь значения этим свойствам.
 
+У класса Level удали поле String name. Вместо него добавь поле 
+LevelInfo levelInfo, и принимай именно это поле первым параметром 
+в конструкторе класса Level вместо поля String name.
+
+Измени метод toString() у класса Level так, чтобы он возвращал 
+строку Quarke level, name is <LEVEL_NAME>, difficulty is 
+<DIFFICULTY>, point count is <POINT_COUNT>. Вместо <LEVEL_NAME> 
+<DIFFICULTY> <POINT_COUNT> подставь значения названия уровня, 
+сложности и количества точек уровня соответственно.
+
+class Level{
+    private Point[] points;
+    LevelInfo levelInfo;
+    Level(LevelInfo levelInfo, Point[] points) {
+        this.levelInfo = levelInfo;
+        this.points = points;
+    }
+
+static class Point{
+    private int x = 0;
+    private int y = 0;
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    private Point[] points;
+    public Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
+    @Override
+    public String toString() {
+        return "Quarke level, name is " + levelInfo.name + ", difficulty is " + levelInfo.difficulty + ", point count is " + points.length;
+    }
+    static class LevelInfo{
+        private String name;
+        private String difficulty;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDifficulty() {
+            return difficulty;
+        }
+
+        public LevelInfo(String name, String difficulty) {
+            this.name = name;
+            this.difficulty = difficulty;
+        }
+    }
+}
+class LevelTest {
+    public static void main(String[] args) {
+        Level.Point p1 = new Level.Point(3, 5);
+        Level.Point p2 = new Level.Point(10, 100);
+        Level.Point p3 = new Level.Point(50, 40);
+
+        Level.Point[] points = {p1, p2, p3};
+
+        Level.LevelInfo info = new Level.LevelInfo("Quarke Intro", "Easy");
+
+        //Quarke level, name is Quarke Intro, difficulty is Easy, point count is 3
+        System.out.println(new Level(info, points));
+    }
+}
 __________________________________________________________________
 19.
+Отлично, класс Level написан и работает так, как ожидалось. 
+Нужно доделать еще последний момент, и можно отдавать в 
+использование.
 
+Тебе нужно написать метод, который бы считал хеш уровня. 
+Это число, максимально разное для каждого уровня.
+
+В нашем случае алгоритм хеширования очень простой. Для каждой 
+точки мы умножаем координаты x и y, и складываем сумму всех 
+этих умножений. Полученное число и будет хешем.
+В классе Level напиши метод calculateLevelHash(), который бы 
+возвращал число в соответствии с описанным выше алгоритмом.
+
+class Level{
+    private Point[] points;
+    LevelInfo levelInfo;
+    Level(LevelInfo levelInfo, Point[] points) {
+        this.levelInfo = levelInfo;
+        this.points = points;
+    }
+
+static class Point{
+    private int x = 0;
+    private int y = 0;
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    private Point[] points;
+    public Point(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
+    @Override
+    public String toString() {
+        return "Quarke level, name is " + levelInfo.name + ", difficulty is " + levelInfo.difficulty + ", point count is " + points.length;
+    }
+
+    public int calculateLevelHash(){
+        int result = 0;
+        for (Point point: this.points) {
+            result += point.getX() * point.getY();
+        }
+        return result;
+    }
+    
+    static class LevelInfo{
+        private String name;
+        private String difficulty;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDifficulty() {
+            return difficulty;
+        }
+
+        public LevelInfo(String name, String difficulty) {
+            this.name = name;
+            this.difficulty = difficulty;
+        }
+    }
+}
+
+class LevelTest {
+    public static void main(String[] args) {
+        Level.Point p1 = new Level.Point(3, 5);
+        Level.Point p2 = new Level.Point(10, 100);
+        Level.Point p3 = new Level.Point(50, 40);
+
+        Level.Point[] points = {p1, p2, p3};
+
+        Level.LevelInfo info = new Level.LevelInfo("Quarke Intro", "Easy");
+
+        //3015
+        System.out.println(new Level(info, points).calculateLevelHash());
+    }
+}
 __________________________________________________________________
 20.
+Создай класс GameMenu.
+
+В классе GameMenu создай внутренний статический абстрактный 
+класс MenuItem. У класса MenuItem создай абстрактный метод 
+getAction(), который возвращает строку.
+
+Создай три класса-наследника от класса MenuItem, которые 
+реализуют метод getAction():
+
+    класс Start, метод getAction() возвращает строку start;
+    класс Options, метод getAction() возвращает строку options;
+    класс Exit, метод getAction() возвращает строку exit.
+
+У класса GameMenu создай метод void act(MenuItem item). 
+Этот метод принимает элемент меню (экземпляр класса MenuItem), 
+и выводит в консоль результат вызова метода getAction() у этого 
+элемента.
+
 class GameMenuTest {
     public static void main(String[] args) {
         GameMenu menu = new GameMenu();
@@ -768,6 +970,11 @@ class GameMenu{
 }
 __________________________________________________________________
 21.
+Напиши класс LevelLoader. У этого класса создай метод 
+String load(String levelName). Метод принимает один параметр - 
+имя уровня, и возвращает строку Loading level <LEVEL_NAME> ..., 
+где вместо <LEVEL_NAME> подставляется переданное имя уровня.
+
 class LevelLoaderTest {
     public static void main(String[] args) {
         LevelLoader levelLoader = new LevelLoader();
@@ -776,45 +983,41 @@ class LevelLoaderTest {
         System.out.println(levelLoader.load("StartLevel"));
     }
 }
-
-class LevelLoader {
+class LevelLoader{
     String load(String levelName){
-        return "Loading level "+levelName+" ...";
+        return "Loading level " + levelName + " ...";
     }
 }
 __________________________________________________________________
 22.
-class LevelLoader {
-    private static LevelLoader instance = new LevelLoader();
-    public static LevelLoader getInstance(){
-        return instance;
-    }
-    public String load(String levelName) {
-        return "Loading level " + levelName + " ...";
-    }
-}
+Первое действие - нужно добавить приватное статическое поле с 
+именем instance типа LevelLoader в класс LevelLoader. Это поле 
+сразу инициализируй новым экземпляром LevelLoader (вызовом new 
+LevelLoader()).
+Создай статический публичный метод LevelLoader getInstance(), 
+который будет возвращать instance.
 
 class LevelLoaderTest {
     public static void main(String[] args) {
+        LevelLoader levelLoader = new LevelLoader();
+
         //Loading level Startlevel ...
-        System.out.println(LevelLoader.getInstance().load("StartLevel"));
+        System.out.println(levelLoader.load("StartLevel"));
+    }
+}
+class LevelLoader{
+    private static LevelLoader instance  = new LevelLoader;
+    public static LevelLoader getInstance(){
+        return instance;
+    }
+    String load(String levelName){
+        return "Loading level " + levelName + " ...";
     }
 }
 __________________________________________________________________
 23.
-class LevelLoader {
-    private static LevelLoader instance = new LevelLoader();
-
-    public static LevelLoader getInstance() {
-        return instance;
-    }
-
-    private LevelLoader(){};
-
-    public String load(String levelName) {
-        return "Loading level " + levelName + " ...";
-    }
-}
+Создай в классе LevelLoader приватный конструктор без параметров. 
+Других конструкторов быть не должно.
 
 class LevelLoaderTest {
     public static void main(String[] args) {
@@ -822,28 +1025,56 @@ class LevelLoaderTest {
         System.out.println(LevelLoader.getInstance().load("StartLevel"));
     }
 }
+class LevelLoader{
+    private LevelLoader() {
+    }
+
+    private static LevelLoader instance  = new LevelLoader;
+    public static LevelLoader getInstance(){
+        return instance;
+    }
+    String load(String levelName){
+        return "Loading level " + levelName + " ...";
+    }
+}
 __________________________________________________________________
 24.
+Напиши класс-синглтон TexturePool. У этого класса должен быть 
+метод public String getTexture(String textureName). Этот метод 
+возвращает строку Get texture <TEXTURE_NAME>. Вместо 
+<TEXTURE_NAME> должно быть имя текстуры, которое передается как 
+параметр в метод getTexture().
+
 class TexturePoolTest {
     public static void main(String[] args) {
         //Get texture MainHero
         System.out.println(TexturePool.getInstance().getTexture("MainHero"));
     }
 }
-
 class TexturePool{
     private static final TexturePool instance = new TexturePool();
+
+    private TexturePool() {
+    }
+
+    public static TexturePool getInstance() {
+        return instance;
+    }
+
     public String getTexture(String textureName){
         return "Get texture " + textureName;
-    }
-    private TexturePool(){}
-
-    static TexturePool getInstance(){
-        return instance;
     }
 }
 __________________________________________________________________
 25.
+Исправь класс AvgDamageCalculator, дописав метод calculateAvg() 
+так, чтобы если мы передаем пустой массив и происходит деление 
+на 0, то эта исключительная ситуация обработалась, и метод 
+возвратил значение 0.
+
+Не используй условные операторы if, используй именно обработку 
+исключений try...catch.
+
 class AvgDamageCalculator {
     public int calculateAvg(int[] samples) {
         int sum = 0;
@@ -853,9 +1084,9 @@ class AvgDamageCalculator {
         try{
             sum /= samples.length;
         }catch(ArithmeticException e){
-//            System.out.println(e.getMessage());
             return 0;
         }
+
         return sum;
     }
 }
@@ -871,6 +1102,16 @@ class AvgDamageCalculatorTest {
 }
 __________________________________________________________________
 26.
+Допиши метод printElement() в классе ArrayWorker так, чтобы:
+если переданный индекс меньше размера массива, и элемент 
+можно получить - в консоль выводился бы этот элемент;
+если индекс неправильный, и бросается исключение - в консоль 
+выводился бы текст wrong index;
+в любом случае в конце еще бы выводилась строка 
+index is <INDEX_VALUE>, где вместо <INDEX_VALUE> подставлялся 
+бы переданный индекс.
+Не используй условный оператор, лишь try...catch...finally.
+
 class ArrayWorker {
     public void printElement(int[] array, int index) {
         try{
@@ -898,6 +1139,10 @@ class ArrayWorkerTest {
 }
 __________________________________________________________________
 27.
+Допиши метод setHp() в классе AIPlayer так, чтобы если значение 
+переданного параметра hp было меньше 0 или больше 100, то 
+бросалось бы исключение IllegalArgumentException.
+
 class AIPlayer {
     private int hp;
 
@@ -933,22 +1178,17 @@ class AIPlayerTest {
 }
 __________________________________________________________________
 28.
+Сделай рефакторинг метода sum() в классе TotalScore. Метод должен 
+работать точно так же, как и работал, но внутри метода не 
+используй перехват исключения (ключевые слова try...catch). 
+Перепиши этот метод на нормально работающий Java-код.
+
 class TotalScore {
     public int sum(int[] scores) {
         int result = 0;
-//        int index = 0;
-//        while(true) {
-//            try {
-//                result += scores[index++];
-//            } catch (IndexOutOfBoundsException ex) {
-//                break;
-//            }
-//        }
-        for (int points: scores) {
-            result += points;
+        for (int i = 0; i < scores.length; i++){
+            result = result + scores[i];
         }
-
-
         return result;
     }
 }
@@ -963,7 +1203,14 @@ class TotalScoreTest {
 }
 __________________________________________________________________
 29.
-import java.io.StringWriter;
+Создай свое проверяемое исключение с именем 
+LevelTooBigException, унаследуясь от класса Exception.
+
+Бросай это исключение в методе load(Level level) класса 
+LevelLoader если площадь переданного уровня больше чем 
+100000 единиц.
+
+//import java.io.StringWriter;
 
 class Level {
     private int width;
@@ -991,7 +1238,6 @@ class LevelLoader {
         System.out.println("Level loaded");
     }
 }
-
 class LevelTooBigException extends Error{
     void errMessage(String msg){
         System.out.println(msg);
@@ -1004,14 +1250,14 @@ class LevelLoaderTest {
         try {
             new LevelLoader().load(new Level(10, 20));
         } catch (LevelTooBigException ex) {
-            ex.errMessage("Level too big");
+            System.out.println("Level too big");
         }
 
         //Level too big
         try {
             new LevelLoader().load(new Level(10000, 2000));
         } catch (LevelTooBigException ex) {
-            ex.errMessage("Level too big");
+            System.out.println("Level too big");
         }
     }
 }

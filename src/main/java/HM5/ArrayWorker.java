@@ -1,5 +1,6 @@
 package HM5;
-//Допиши метод printElement() в классе ArrayWorker так, чтобы:
+//26.
+// Допиши метод printElement() в классе ArrayWorker так, чтобы:
 //если переданный индекс меньше размера массива, и элемент
 //можно получить - в консоль выводился бы этот элемент;
 //если индекс неправильный, и бросается исключение - в консоль
@@ -11,7 +12,13 @@ package HM5;
 
 class ArrayWorker {
     public void printElement(int[] array, int index) {
-        System.out.println("value is " + array[index]);
+        try{
+            System.out.println("value is " + array[index]);
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("wrong index");
+        }finally {
+            System.out.println("index is " + index);
+        }
     }
 }
 
