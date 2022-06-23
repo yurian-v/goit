@@ -58,9 +58,9 @@
       <recent name="HW4" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WordSplitterTest">
-    <configuration name="GooQueryTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HW6.GooQueryTest" />
+  <component name="RunManager" selected="Application.FibonacciExample">
+    <configuration name="FibonacciExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HW6.FibonacciExample" />
       <module name="SecondModulePart1" />
       <extension name="coverage">
         <pattern>
@@ -126,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FibonacciExample" />
         <item itemvalue="Application.WordSplitterTest" />
         <item itemvalue="Application.PhraseTest" />
         <item itemvalue="Application.GooSearchResultTest" />
         <item itemvalue="Application.GooWordStatTest" />
-        <item itemvalue="Application.GooQueryTest" />
       </list>
     </recent_temporary>
   </component>
