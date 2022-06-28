@@ -6,11 +6,18 @@ package HW6;
 //        Знаками пунктуации считаются следующие: ., ,, !, :, ;.
 public class PunctuationMarkCounter {
     public int count(String phrase) {
-        char[] marks = new char[]{'.', ',', '!', ':', ';'};
+        char[] puncts = new char[]{'.', ',', '!', ':', ';'};
+//        System.out.println(puncts);
         char[] symbolsFromPhrase = phrase.toCharArray();
+//        System.out.println(symbolsFromPhrase);
         int marksCount = 0;
-
-
+        for(char punct : puncts){
+            for(char symbol : symbolsFromPhrase){
+                if (punct == symbol){
+                   marksCount++;
+                }
+            }
+        }
         return marksCount;
     }
 }
