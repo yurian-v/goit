@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="04b43f89-6729-4261-ae70-38feffdd5de4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/HW6/PunctuationMarkCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HW6/PunctuationMarkCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/HW6/DoubleSpaceCleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HW6/DoubleSpaceCleaner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
       <recent name="HW4" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DoubleSpaceCleanerTest">
+  <component name="RunManager" selected="Application.WordFreqCounterTest">
     <configuration name="DoubleSpaceCleanerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HW6.DoubleSpaceCleanerTest" />
       <module name="SecondModulePart1" />
@@ -112,8 +112,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WordSplitterTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HW6.WordSplitterTest" />
+    <configuration name="WordFreqCounterTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HW6.WordFreqCounterTest" />
       <module name="SecondModulePart1" />
       <extension name="coverage">
         <pattern>
@@ -127,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WordFreqCounterTest" />
         <item itemvalue="Application.DoubleSpaceCleanerTest" />
         <item itemvalue="Application.PunctuationMarkCounterTest" />
         <item itemvalue="Application.PassportFormCreator" />
         <item itemvalue="Application.FibonacciExample" />
-        <item itemvalue="Application.WordSplitterTest" />
       </list>
     </recent_temporary>
   </component>
